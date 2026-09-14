@@ -227,7 +227,7 @@ export default function ReviewsSection() {
                 </span>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#063935] to-[#087F74] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#074D45] to-[#095E54] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs">
                     {rev.author
                       .split(' ')
                       .filter((part) => !part.includes('.'))

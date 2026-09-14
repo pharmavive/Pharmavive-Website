@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 import { useEnquiryCart } from '@/context/EnquiryCartContext';
 import { formatMolecularFormula } from '@/utils/chemUtils';
 import CompoundStructureThumbnail from './CompoundStructureThumbnail';
@@ -23,6 +24,7 @@ const PACK_SIZES = ['10mg', '25mg', '50mg', '100mg', '500mg', '1g', '5g', 'Custo
 
 export default function EnquiryCartDrawer() {
   const { cart, isOpen, closeCart, removeFromCart, updateQuantity, clearCart, totalItems } = useEnquiryCart();
+  const { data: session, status } = useSession();
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [selectedProductForModal, setSelectedProductForModal] = useState(null);
   const [formData, setFormData] = useState({
@@ -37,11 +39,72 @@ export default function EnquiryCartDrawer() {
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Auto-fill user details if already signed in
+  useEffect(() => {
+    if (session?.user) {
+      // 1. Immediately prefill from active NextAuth session
+      setFormData((prev) => ({
+        ...prev,
+        name: prev.name || session.user.name || '',
+        email: prev.email || session.user.email || '',
+        company: prev.company || session.user.institution || '',
+      }));
+
+      // 2. Fetch full profile to populate phone, country, and organization
+      fetch('/api/user/profile')
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success && data.user) {
+            setFormData((prev) => ({
+              ...prev,
+              name: data.user.name || prev.name || session.user.name || '',
+              email: data.user.email || prev.email || session.user.email || '',
+              company: data.user.institution || prev.company || session.user.institution || '',
+              phone: data.user.phone || prev.phone || '',
+              country: data.user.country || prev.country || '',
+            }));
+          }
+        })
+        .catch(() => {});
+    } else {
+      // Secondary fallback: retrieve remembered client details if previously entered
+      try {
+        const saved = localStorage.getItem('pv_cart_rfq_details');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          setFormData((prev) => ({
+            ...prev,
+            name: prev.name || parsed.name || '',
+            company: prev.company || parsed.company || '',
+            email: prev.email || parsed.email || '',
+            phone: prev.phone || parsed.phone || '',
+            country: prev.country || parsed.country || '',
+          }));
+        }
+      } catch {}
+    }
+  }, [session, status]);
+
   if (!isOpen) return null;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: value };
+      try {
+        localStorage.setItem(
+          'pv_cart_rfq_details',
+          JSON.stringify({
+            name: updated.name,
+            company: updated.company,
+            email: updated.email,
+            phone: updated.phone,
+            country: updated.country,
+          })
+        );
+      } catch {}
+      return updated;
+    });
   };
 
   const generateWhatsAppMessage = () => {
@@ -60,12 +123,20 @@ export default function EnquiryCartDrawer() {
       msg += `\n`;
     });
 
-    if (formData.name) {
+    const clientName = formData.name || session?.user?.name || '';
+    const clientCompany = formData.company || session?.user?.institution || '';
+    const clientEmail = formData.email || session?.user?.email || '';
+    const clientPhone = formData.phone || '';
+    const clientCountry = formData.country || '';
+
+    if (clientName || clientEmail) {
       msg += `*Client Details:*\n`;
-      msg += `• Name: ${formData.name}\n`;
-      if (formData.company) msg += `• Company: ${formData.company}\n`;
-      if (formData.email) msg += `• Email: ${formData.email}\n`;
-      if (formData.country) msg += `• Country: ${formData.country}\n`;
+      if (clientName) msg += `• Name: ${clientName}\n`;
+      if (clientCompany) msg += `• Organization: ${clientCompany}\n`;
+      if (clientEmail) msg += `• Email: ${clientEmail}\n`;
+      if (clientPhone) msg += `• Phone: ${clientPhone}\n`;
+      if (clientCountry) msg += `• Country: ${clientCountry}\n`;
+      msg += `\n`;
     }
 
     msg += `\nPlease provide availability, lead time, and pricing with complete CoA.`;
@@ -84,11 +155,11 @@ export default function EnquiryCartDrawer() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.name,
-          organization: formData.company,
-          email: formData.email,
-          phone: formData.phone,
-          country: formData.country,
+          name: formData.name || session?.user?.name || '',
+          organization: formData.company || session?.user?.institution || '',
+          email: formData.email || session?.user?.email || '',
+          phone: formData.phone || '',
+          country: formData.country || '',
           message: formData.notes || 'Official Request for Quotation (RFQ) for selected chemical compounds.',
           type: 'rfq_cart',
           items: cart.map((item) => ({
@@ -245,6 +316,42 @@ export default function EnquiryCartDrawer() {
                   </div>
                 ) : (
                   <form onSubmit={handleEmailSubmit} className="space-y-3.5">
+                    {/* Signed-In Auto-Fill Status Banner */}
+                    {session?.user ? (
+                      <div className="p-3 rounded-2xl bg-emerald-50/90 border border-emerald-200/80 flex items-center justify-between shadow-2xs">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="w-8 h-8 rounded-xl bg-[#00A389] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                            <IoShieldCheckmarkOutline size={18} />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs font-bold text-emerald-950 truncate">
+                                {formData.name || session.user.name || 'Verified Account'}
+                              </span>
+                              <span className="text-[10px] font-bold text-emerald-800 bg-emerald-200/70 px-2 py-0.5 rounded-full shrink-0">
+                                Auto-Filled
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-emerald-700/90 truncate mt-0.5">
+                              Details pre-filled from your profile. Ready to submit directly.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="p-2.5 px-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs text-slate-600">
+                        <span className="text-[11px] text-slate-500">Already registered with us?</span>
+                        <Link
+                          href="/login"
+                          onClick={closeCart}
+                          className="text-[#00A389] hover:text-[#008f78] hover:underline font-bold text-xs inline-flex items-center gap-1"
+                        >
+                          <span>Sign In to Auto-Fill</span>
+                          <IoArrowForward size={12} />
+                        </Link>
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Full Name *</label>

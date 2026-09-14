@@ -1252,6 +1252,29 @@ select:focus-visible {
   will-change: transform, opacity;
 }
 
+/* Continuous Chemical Ticker Strip */
+@keyframes chemicalTicker {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.chemical-ticker-track {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+  animation: chemicalTicker 48s linear infinite;
+  will-change: transform;
+}
+
+.chemical-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+
 
 
 

@@ -59,6 +59,9 @@ export function getStructureType(item) {
   if (cas === '143322-56-9' || name.includes('eletriptan') || cat.includes('1433')) {
     return 'eletriptan-impurity';
   }
+  if (cas === '162401-32-3' || name.includes('roflumilast')) {
+    return 'roflumilast';
+  }
 
   return 'generic';
 }
@@ -451,6 +454,66 @@ export function ChemicalStructureSvg({ type, className = "w-full h-full" }) {
         <line x1="180" y1="158" x2="192" y2="164" stroke="#0f172a" strokeWidth="1.5" />
         <line x1="192" y1="178" x2="180" y2="184" stroke="#0f172a" strokeWidth="1.5" />
         <line x1="170" y1="178" x2="170" y2="164" stroke="#0f172a" strokeWidth="1.5" />
+      </svg>
+    );
+  }
+
+  if (type === 'roflumilast') {
+    return (
+      <svg viewBox="10 46 220 100" className={className} fill="none">
+        {/* Cyclopropyl Ring */}
+        <polygon points="26,56 14,74 38,74" stroke="#0f172a" strokeWidth="2.2" strokeLinejoin="round" />
+        {/* -CH2- Linker */}
+        <line x1="38" y1="74" x2="52" y2="82" stroke="#0f172a" strokeWidth="2.2" />
+        {/* Ether Oxygen */}
+        <line x1="52" y1="82" x2="62" y2="78" stroke="#0f172a" strokeWidth="2.2" />
+        <text x="63" y="80" fill="#dc2626" fontSize="12" fontWeight="bold" fontFamily="system-ui, sans-serif">O</text>
+        <line x1="74" y1="80" x2="86" y2="86" stroke="#0f172a" strokeWidth="2.2" />
+
+        {/* Central Benzene Ring */}
+        <polygon points="86,86 98,78 114,78 122,86 114,96 98,96" stroke="#0f172a" strokeWidth="2.2" strokeLinejoin="round" />
+        <line x1="99" y1="81" x2="112" y2="81" stroke="#0f172a" strokeWidth="1.6" />
+        <line x1="117" y1="89" x2="111" y2="94" stroke="#0f172a" strokeWidth="1.6" />
+        <line x1="90" y1="87" x2="96" y2="94" stroke="#0f172a" strokeWidth="1.6" />
+
+        {/* Difluoromethoxy -O-CHF2 at C4 */}
+        <line x1="98" y1="96" x2="98" y2="108" stroke="#0f172a" strokeWidth="2.2" />
+        <text x="94" y="120" fill="#dc2626" fontSize="12" fontWeight="bold" fontFamily="system-ui, sans-serif">O</text>
+        <line x1="98" y1="124" x2="90" y2="134" stroke="#0f172a" strokeWidth="2.2" />
+        <text x="62" y="142" fill="#00A389" fontSize="11" fontWeight="bold" fontFamily="system-ui, sans-serif">F₂HC</text>
+
+        {/* Carbonyl Amide Linker at C1 */}
+        <line x1="122" y1="86" x2="136" y2="86" stroke="#0f172a" strokeWidth="2.2" />
+        <line x1="134" y1="86" x2="134" y2="72" stroke="#0f172a" strokeWidth="2" />
+        <line x1="138" y1="86" x2="138" y2="72" stroke="#0f172a" strokeWidth="2" />
+        <text x="131" y="66" fill="#dc2626" fontSize="12" fontWeight="bold" fontFamily="system-ui, sans-serif">O</text>
+
+        {/* Amide -NH- */}
+        <line x1="136" y1="86" x2="146" y2="86" stroke="#0f172a" strokeWidth="2.2" />
+        <text x="147" y="90" fill="#0284c7" fontSize="11.5" fontWeight="bold" fontFamily="system-ui, sans-serif">HN</text>
+
+        {/* 3,5-Dichloropyridin-4-yl Ring */}
+        <line x1="166" y1="86" x2="176" y2="86" stroke="#0f172a" strokeWidth="2.2" />
+        <line x1="176" y1="86" x2="188" y2="76" stroke="#0f172a" strokeWidth="2.2" />
+        <line x1="188" y1="76" x2="204" y2="76" stroke="#0f172a" strokeWidth="2.2" />
+        <line x1="204" y1="76" x2="212" y2="83" stroke="#0f172a" strokeWidth="2.2" />
+        <line x1="176" y1="86" x2="188" y2="96" stroke="#0f172a" strokeWidth="2.2" />
+        <line x1="188" y1="96" x2="204" y2="96" stroke="#0f172a" strokeWidth="2.2" />
+        <line x1="204" y1="96" x2="212" y2="89" stroke="#0f172a" strokeWidth="2.2" />
+
+        {/* Pyridine double bonds */}
+        <line x1="180" y1="86" x2="189" y2="79" stroke="#0f172a" strokeWidth="1.6" />
+        <line x1="190" y1="93" x2="202" y2="93" stroke="#0f172a" strokeWidth="1.6" />
+
+        {/* Pyridine Nitrogen */}
+        <text x="213" y="89" fill="#0284c7" fontSize="12" fontWeight="bold" fontFamily="system-ui, sans-serif">N</text>
+
+        {/* 3,5-Dichloro Substituents */}
+        <line x1="188" y1="76" x2="188" y2="62" stroke="#0f172a" strokeWidth="2" />
+        <text x="183" y="58" fill="#059669" fontSize="11.5" fontWeight="bold" fontFamily="system-ui, sans-serif">Cl</text>
+
+        <line x1="188" y1="96" x2="188" y2="110" stroke="#0f172a" strokeWidth="2" />
+        <text x="183" y="122" fill="#059669" fontSize="11.5" fontWeight="bold" fontFamily="system-ui, sans-serif">Cl</text>
       </svg>
     );
   }

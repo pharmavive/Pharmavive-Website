@@ -125,13 +125,13 @@ export default function WhyChooseSection() {
             
             {/* Outer Dark Teal Crescent Rim */}
             <div 
-              className="absolute left-8 sm:left-10 top-0 bottom-6 right-8 sm:right-10 bg-gradient-to-tr from-[#043A34] via-[#00A389] to-[#043A34] z-0 shadow-lg"
+              className="absolute left-8 sm:left-10 top-0 bottom-6 right-8 sm:right-10 bg-gradient-to-tr from-[#074D45] via-[#00A389] to-[#053D37] z-0 shadow-lg"
               style={{ borderRadius: '150px 0 150px 70px' }}
             />
 
             {/* Bottom Teal Curled Fold */}
             <div 
-              className="absolute left-16 sm:left-20 bottom-0 w-28 sm:w-32 h-14 sm:h-16 bg-gradient-to-r from-[#032C28] via-[#086B61] to-[#00A389] z-20 shadow-md"
+              className="absolute left-16 sm:left-20 bottom-0 w-28 sm:w-32 h-14 sm:h-16 bg-gradient-to-r from-[#053D37] via-[#086B61] to-[#00A389] z-20 shadow-md"
               style={{ borderRadius: '0 0 60px 40px' }}
             />
 
@@ -147,7 +147,7 @@ export default function WhyChooseSection() {
                 sizes="420px"
                 className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#042825]/30 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#053D37]/30 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* Floating Script Callout: "Bringing Science to Life" */}

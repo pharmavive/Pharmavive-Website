@@ -53,7 +53,7 @@ export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [activeLocation, setActiveLocation] = useState('india');
+  const [activeLocation, setActiveLocation] = useState('corporate');
   const [copiedKey, setCopiedKey] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
@@ -113,8 +113,9 @@ export default function ContactPage() {
     }
   };
 
-  const indiaAddressText = `Pharmavive\nPlot No-A-40/B Part -B, Gandhinagar,\nKukatpally-500037, Telangana | India`;
-  const chinaAddressText = `Pharmavive\nBuilding 28, Room 201, Lane 358, Sanmen Road,\nWujiaochang Subdistrict, Yangpu District, Shanghai | China`;
+  const corporateAddressText = `Pharmavive\nRoad No. 10, beside AV Towers\nICRISAT Colony, Jubilee Hills\nHyderabad– 500045, Telangana | India`;
+  const chinaAddressText = `Pharmavive\nBuilding 28, Room 201, Lane 358, \nSanmen Road, Wujiaochang Subdistrict, \nYangpu District, Shanghai | China`;
+  const rdAddressText = `Pharmavive\nPlot No-A-40/B Part -B, Gandhinagar,\nKukatpally-500037, Telangana | India`;
 
   return (
     <div className="min-h-screen bg-slate-50/60 selection:bg-[#00A389]/20 selection:text-[#0E2358]">
@@ -535,28 +536,25 @@ export default function ContactPage() {
                   </button>
                 </div>
 
-                {/* WhatsApp Chemist Desk */}
-                <div className="group flex items-start justify-between gap-3 p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-100 hover:border-emerald-300 hover:bg-emerald-50 transition-all">
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                {/* WhatsApp Channel */}
+                <a
+                  href="https://wa.me/916302616273"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-100 hover:border-emerald-300 hover:bg-emerald-50 transition-all cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
                       <IoLogoWhatsapp size={20} />
                     </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-emerald-950 block text-xs">WhatsApp</span>
-                        <span className="text-[10px] font-bold text-emerald-700 bg-emerald-200/60 px-1.5 py-0.2 rounded-md">Live</span>
-                      </div>
-                      <a
-                        href="https://wa.me/916302616273"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-emerald-700 hover:underline font-semibold text-xs block mt-0.5"
-                      >
-                        Chat with a Chemist on WhatsApp →
-                      </a>
-                    </div>
+                    <span className="font-bold text-emerald-950 group-hover:text-emerald-700 text-xs sm:text-[13px] block transition-colors">
+                      Chat with us on WhatsApp
+                    </span>
                   </div>
-                </div>
+                  <span className="text-emerald-700 font-bold text-sm group-hover:translate-x-0.5 transition-transform pr-1">
+                    →
+                  </span>
+                </a>
               </div>
             </div>
 
@@ -574,19 +572,77 @@ export default function ContactPage() {
 
               {/* Address Blocks with Clean Sans-Serif Typography */}
               <div className="space-y-3.5">
-                {/* India Office Block */}
+                {/* Corporate Office Block */}
                 <div className="p-4 rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-1.5 relative group hover:border-[#00A389]/30 transition-all">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-slate-900 text-xs tracking-tight block">
-                      India Office -
+                      Corporate office
                     </span>
                     <button
                       type="button"
-                      onClick={() => handleCopy('india-address', indiaAddressText)}
-                      title="Copy India Office Address"
-                      className="text-slate-400 hover:text-slate-700 p-1 rounded-md hover:bg-slate-200/60 transition-colors"
+                      onClick={() => handleCopy('corporate-address', corporateAddressText)}
+                      title="Copy Corporate Office Address"
+                      className="text-slate-400 hover:text-slate-700 p-1 rounded-md hover:bg-slate-200/60 transition-colors cursor-pointer"
                     >
-                      {copiedKey === 'india-address' ? (
+                      {copiedKey === 'corporate-address' ? (
+                        <span className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
+                          <IoCheckmark size={13} /> Copied
+                        </span>
+                      ) : (
+                        <IoCopyOutline size={14} />
+                      )}
+                    </button>
+                  </div>
+                  <p className="text-xs text-slate-700 leading-relaxed font-sans">
+                    <strong className="font-semibold text-slate-900">Pharmavive</strong><br />
+                    Road No. 10, beside AV Towers<br />
+                    ICRISAT Colony, Jubilee Hills<br />
+                    Hyderabad– 500045, Telangana | India
+                  </p>
+                </div>
+
+                {/* Shanghai Office Block */}
+                <div className="p-4 rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-1.5 relative group hover:border-[#00A389]/30 transition-all">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-slate-900 text-xs tracking-tight block">
+                      Shanghai Office
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleCopy('china-address', chinaAddressText)}
+                      title="Copy Shanghai Office Address"
+                      className="text-slate-400 hover:text-slate-700 p-1 rounded-md hover:bg-slate-200/60 transition-colors cursor-pointer"
+                    >
+                      {copiedKey === 'china-address' ? (
+                        <span className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
+                          <IoCheckmark size={13} /> Copied
+                        </span>
+                      ) : (
+                        <IoCopyOutline size={14} />
+                      )}
+                    </button>
+                  </div>
+                  <p className="text-xs text-slate-700 leading-relaxed font-sans">
+                    <strong className="font-semibold text-slate-900">Pharmavive</strong><br />
+                    Building 28, Room 201, Lane 358,<br />
+                    Sanmen Road, Wujiaochang Subdistrict,<br />
+                    Yangpu District, Shanghai | China
+                  </p>
+                </div>
+
+                {/* Research & Development Block */}
+                <div className="p-4 rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-1.5 relative group hover:border-[#00A389]/30 transition-all">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-slate-900 text-xs tracking-tight block">
+                      Research &amp; Development
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleCopy('rd-address', rdAddressText)}
+                      title="Copy Research & Development Address"
+                      className="text-slate-400 hover:text-slate-700 p-1 rounded-md hover:bg-slate-200/60 transition-colors cursor-pointer"
+                    >
+                      {copiedKey === 'rd-address' ? (
                         <span className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
                           <IoCheckmark size={13} /> Copied
                         </span>
@@ -601,86 +657,79 @@ export default function ContactPage() {
                     Kukatpally-500037, Telangana | India
                   </p>
                 </div>
-
-                {/* China Office Block */}
-                <div className="p-4 rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-1.5 relative group hover:border-[#00A389]/30 transition-all">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-900 text-xs tracking-tight block">
-                      China Office -
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => handleCopy('china-address', chinaAddressText)}
-                      title="Copy China Office Address"
-                      className="text-slate-400 hover:text-slate-700 p-1 rounded-md hover:bg-slate-200/60 transition-colors"
-                    >
-                      {copiedKey === 'china-address' ? (
-                        <span className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
-                          <IoCheckmark size={13} /> Copied
-                        </span>
-                      ) : (
-                        <IoCopyOutline size={14} />
-                      )}
-                    </button>
-                  </div>
-                  <p className="text-xs text-slate-700 leading-relaxed font-sans">
-                    <strong className="font-semibold text-slate-900">Pharmavive</strong><br />
-                    Building 28, Room 201, Lane 358, Sanmen Road,<br />
-                    Wujiaochang Subdistrict, Yangpu District, Shanghai | China
-                  </p>
-                </div>
               </div>
 
               {/* Interactive Location Map Switcher */}
               <div className="space-y-2 pt-2 border-t border-slate-100">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between flex-wrap gap-2">
                   <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                     Interactive Map
                   </span>
                   <div className="inline-flex rounded-lg bg-slate-100 p-0.5 text-xs font-semibold">
                     <button
                       type="button"
-                      onClick={() => setActiveLocation('india')}
-                      className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
-                        activeLocation === 'india'
+                      onClick={() => setActiveLocation('corporate')}
+                      className={`px-2.5 py-1 rounded-md transition-all cursor-pointer ${
+                        activeLocation === 'corporate'
                           ? 'bg-[#0E2358] text-white shadow-xs'
                           : 'text-slate-600 hover:text-slate-900'
                       }`}
                     >
-                      India Office
+                      Corporate
                     </button>
                     <button
                       type="button"
                       onClick={() => setActiveLocation('china')}
-                      className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
+                      className={`px-2.5 py-1 rounded-md transition-all cursor-pointer ${
                         activeLocation === 'china'
                           ? 'bg-[#0E2358] text-white shadow-xs'
                           : 'text-slate-600 hover:text-slate-900'
                       }`}
                     >
-                      China Office
+                      Shanghai
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveLocation('rd')}
+                      className={`px-2.5 py-1 rounded-md transition-all cursor-pointer ${
+                        activeLocation === 'rd'
+                          ? 'bg-[#0E2358] text-white shadow-xs'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                    >
+                      R&amp;D
                     </button>
                   </div>
                 </div>
 
                 {/* Map Iframe Container */}
                 <div className="rounded-2xl overflow-hidden border border-slate-200 h-52 relative bg-slate-100 shadow-inner">
-                  {activeLocation === 'india' ? (
+                  {activeLocation === 'corporate' ? (
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30443.5010739173!2d78.41710581705271!3d17.486610388701322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb904e044d1bbb%3A0xb542222eec8368b4!2sHyderabad%2C%20Telangana%20500037!5e0!3m2!1sen!2sin!4v1749034975862!5m2!1sen!2sin"
+                      src="https://maps.google.com/maps?q=Road+No.+10,+beside+AV+Towers,+ICRISAT+Colony,+Jubilee+Hills,+Hyderabad+500045&t=&z=15&ie=UTF8&iwloc=&output=embed"
                       width="100%"
                       height="100%"
-                      title="Pharmavive India Facility Location"
+                      title="Pharmavive Corporate Office Location"
+                      style={{ border: 0 }}
+                      allowFullScreen=""
+                      loading="lazy"
+                    />
+                  ) : activeLocation === 'china' ? (
+                    <iframe
+                      src="https://maps.google.com/maps?q=Building+28,+Room+201,+Lane+358,+Sanmen+Road,+Yangpu+District,+Shanghai&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                      width="100%"
+                      height="100%"
+                      title="Pharmavive Shanghai Office Location"
                       style={{ border: 0 }}
                       allowFullScreen=""
                       loading="lazy"
                     />
                   ) : (
                     <iframe
-                      src="https://maps.google.com/maps?q=Building+28,+Room+201,+Lane+358,+Sanmen+Road,+Yangpu+District,+Shanghai&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30443.5010739173!2d78.41710581705271!3d17.486610388701322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb904e044d1bbb%3A0xb542222eec8368b4!2sHyderabad%2C%20Telangana%20500037!5e0!3m2!1sen!2sin!4v1749034975862!5m2!1sen!2sin"
                       width="100%"
                       height="100%"
-                      title="Pharmavive China Office Location"
+                      title="Pharmavive R&D Facility Location"
                       style={{ border: 0 }}
                       allowFullScreen=""
                       loading="lazy"

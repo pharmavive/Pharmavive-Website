@@ -466,13 +466,13 @@ export default function ChemicalSlideshow() {
     goToSlide(idx, dir);
   };
 
-  // Autoplay timer: advances smoothly every 4.5s, pauses on hover / touch
+  // Autoplay timer: advances smoothly every 2s, pauses on hover / touch
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
       const nextIdx = (currentIdx + 1) % total;
       goToSlide(nextIdx, 'next');
-    }, 4500);
+    }, 2000);
     return () => clearInterval(timer);
   }, [isPaused, currentIdx, total]);
 
