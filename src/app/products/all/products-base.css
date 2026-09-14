@@ -1,0 +1,604 @@
+/* src/app/products/all/products-base.css */
+
+/* --- Root Variables (assuming these are in your globals.css or similar) --- */
+/*
+:root {
+  --primary-color: #5390c9;
+  --primary-color-light: #e6f0f7;
+  --primary-color-dark: #4077a2;
+  --accent-green: #7f9040;
+  --accent-blue: #5390c9;
+
+  --text-color: #1a1a1a;
+  --dark-gray: #333333;
+  --light-gray: #d0d0d0;
+  --light-gray-border: #e0e0e0;
+  --white: #ffffff;
+  --background-light: #f8f8f8;
+  --error-red: #d9534f;
+
+  --secondary-button-bg: #6c757d;
+  --secondary-button-text: #ffffff;
+  --secondary-button-hover-bg: #5a6268;
+}
+*/
+
+
+/* --- General Page Container (for All, Category, List, and Detail Pages) --- */
+.category-page-container,
+.product-listing-page-container,
+.product-details-container { /* Now includes product details page */
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: var(--white);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border: 1px solid var(--light-gray);
+  line-height: 1.7; /* From product-detail-page.css */
+}
+
+/* --- Loading/Error/No Data States (Shared) --- */
+.category-page-container.loading-state,
+.category-page-container.error-state,
+.category-page-container.no-data-state,
+.product-listing-page-container.loading-state,
+.product-listing-page-container.error-state,
+.product-listing-page-container.no-data-state,
+.no-products-message-container,
+.product-details-container.loading-state,
+.product-details-container.error-state,
+.product-details-container.no-product-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+}
+
+.spinner {
+  border: 4px solid rgba(var(--primary-color-rgb), 0.2); /* Using RGB if available */
+  border-left-color: var(--primary-color);
+  border-top-color: var(--primary-color); /* From product-detail-page.css spinner */
+  border-right-color: rgba(var(--primary-color-rgb), 0.2); /* From product-detail-page.css spinner */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+  display: inline-block; /* Ensure it behaves like a block for margin */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text, .error-message, .no-data-message, .no-products-message {
+  font-size: 1.1em; /* Using em for scalability */
+  color: var(--dark-gray);
+}
+
+.error-heading, .no-data-heading, .no-product-heading {
+  color: var(--error-red);
+  font-size: 1.8em; /* Using em for scalability */
+  margin-bottom: 0.5rem;
+}
+
+.page-title {
+  font-size: 2.5em; /* Using em for scalability */
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.8px; /* From product-detail-page.css title */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* From product-detail-page.css title */
+  line-height: 1.2; /* From product-detail-page.css title */
+}
+
+/* --- Category Grid (for Main Categories and Subcategories) --- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.category-card {
+  background-color: var(--background-light);
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+}
+
+.category-card:hover {
+  background-color: var(--primary-color-light);
+  border-color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  color: var(--primary-color-dark);
+}
+
+.category-card-title {
+  font-size: 1.8em; /* Using em for scalability */
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: inherit; /* Inherit color from parent on hover */
+}
+
+/* --- Subcategory Description on Product Listing Page --- */
+.subcategory-description {
+  font-size: 1.1em; /* Using em for scalability */
+  color: var(--dark-gray);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 1.5rem;
+  background-color: var(--background-light);
+  border-left: 5px solid var(--primary-color);
+  border-radius: 8px; /* Retaining rounded corners */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+
+/* --- Product Cards Grid (for Paginated Product List) --- */
+.product-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3-4 cards per row typical */
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* White background for each card */
+  border: 1px solid #e0e0e0; /* Subtle light border */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* More pronounced shadow */
+  overflow: hidden; /* Ensure content stays within bounds */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  position: relative; /* Needed for absolute positioning of product-card-link */
+}
+
+.product-card:hover {
+  transform: translateY(-8px); /* More significant lift on hover */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+
+.product-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Fixed height for image area */
+  background-color: var(--background-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--light-gray-border);
+}
+
+.product-card-image {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.product-card-image-placeholder {
+  font-style: italic;
+  color: var(--dark-gray);
+  font-size: 1em; /* Using em for scalability */
+  text-align: center;
+}
+
+.product-card-title {
+  font-size: 1.5em; /* Using em for scalability */
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 1rem 1.2rem 0.5rem;
+  white-space: nowrap;         /* Prevent line breaks */
+  overflow: hidden;            /* Hide overflowing text */
+  text-overflow: ellipsis
+}
+
+.product-card-cat-no,
+.product-card-chemical-name {
+  font-size: 0.95em; /* Using em for scalability */
+  color: var(--dark-gray);
+  margin: 0.2rem 1.2rem;
+  white-space: nowrap;         /* Prevent line breaks */
+  overflow: hidden;            /* Hide overflowing text */
+  text-overflow: ellipsis
+}
+
+.product-card-stock {
+  font-size: 1em; /* Using em for scalability */
+  font-weight: 700;
+  margin: 0.8rem 1.2rem 1.2rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--light-gray-border);
+}
+
+.product-card-stock.instock {
+  color: var(--accent-green);
+}
+
+.product-card-stock.out-of-stock {
+  color: var(--error-red);
+}
+
+/* --- Product Details Page Specific Styles (integrated from product-detail-page.css) --- */
+/* The main container styling is now shared via .product-details-container */
+
+.product-header-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.product-name {
+  font-size: 2.8em; /* From product-detail-page.css */
+  color: var(--accent-green); /* From product-detail-page.css */
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px; /* From product-detail-page.css */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* From product-detail-page.css */
+}
+
+.product-cat-number,
+.product-cas-number, /* New style for CAS Number */
+.product-molecular-formula, /* New style for Molecular Formula */
+.product-molecular-weight, /* New style for Molecular Weight */
+.product-category
+.product-stock {
+  font-size: 0.95em;
+  color: #555555; /* Dark grey for details */
+  margin-bottom: 5px;
+}
+
+.product-image-section {
+  width: 100%;
+  max-width: 600px; /* From product-detail-page.css */
+  height: 400px; /* From product-detail-page.css */
+  position: relative;
+  margin-bottom: 30px; /* From product-detail-page.css */
+  background-color: #eeeeee; /* From product-detail-page.css */
+  overflow: hidden;
+  border: 1px solid #d0d0d0; /* From product-detail-page.css */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-main-image {
+  max-width: 100%;
+  height: auto;
+  /* border-radius is handled by .product-details-container itself */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  object-fit: contain;
+}
+
+.no-image-placeholder {
+  font-style: italic;
+  color: #888888; /* From product-detail-page.css */
+  font-size: 1.2em; /* From product-detail-page.css */
+  text-align: center;
+  padding: 20px; /* From product-detail-page.css */
+}
+
+.product-info-grid {
+  width: 100%; /* From product-detail-page.css */
+  display: grid;
+  grid-template-columns: 1fr; /* Single column on small screens */
+  gap: 1rem;
+  background-color: var(--background-light);
+  padding: 1.5rem;
+  border-radius: 8px; /* Retaining rounded corners */
+  border: 1px solid var(--light-gray);
+  font-size: 1.1em; /* From product-detail-page.css */
+  color: var(--dark-gray); /* From product-detail-page.css */
+}
+
+@media (min-width: 768px) {
+  .product-info-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
+  }
+}
+
+.product-info-item {
+  display: flex;
+  flex-direction: column; /* Stack label and value by default */
+  padding: 0.8rem 0;
+  border-bottom: 1px dashed var(--light-gray-border); /* Subtle separator */
+}
+
+/* Adjustments for the last items in a 2-column grid */
+.product-info-grid .product-info-item:nth-last-child(1),
+.product-info-grid .product-info-item:nth-last-child(2) {
+    border-bottom: none; /* Remove border for the last two items */
+}
+@media (min-width: 768px) {
+    /* When 2 columns, only the very last item needs no border,
+       and if an odd number of items, the last item in the first column of the last row needs no border
+       This logic is complex in CSS alone without knowing total items.
+       Simpler: if the parent has a gap, the border can be on the element itself, or a pseudo-element.
+       For this layout, let's keep it simple: last 2 items on mobile, last item on desktop.
+    */
+    .product-info-grid .product-info-item:last-child {
+        border-bottom: none;
+    }
+    /* If you need specific handling for the penultimate item in an odd-numbered 2-col row: */
+    .product-info-grid .product-info-item:nth-last-child(2):nth-child(odd) {
+      border-bottom: none;
+         /* border-bottom: none; */ /* Only if it's the last in its row AND there are 2 items left */
+    }
+}
+
+
+.info-label {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.95em; /* Using em for scalability */
+  margin-bottom: 0.3em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  /* min-width: 150px; Remove fixed min-width, use flex properties below */
+}
+
+.info-value {
+  color: var(--text-color);
+  font-size: 1.05em; /* Using em for scalability */
+  word-break: break-word; /* Prevent long words from overflowing */
+}
+
+.info-value-link {
+    color: var(--accent-blue);
+    font-size: 1.05em; /* Using em for scalability */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.info-value-link:hover {
+    color: var(--primary-color-dark);
+    text-decoration: underline;
+}
+
+.stock-instock {
+    color: var(--accent-green); /* Green for Instock */
+    font-weight: 700;
+}
+
+.stock-out-of-stock {
+    color: var(--error-red); /* Red for Out of stock */
+    font-weight: 700;
+}
+
+
+/* --- Pagination Controls (Shared) --- */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--light-gray);
+}
+
+.pagination-button {
+  padding: 10px 20px;
+  background-color: var(--primary-color); /* Using primary-color for buttons */
+  color: var(--white);
+  border: none;
+  border-radius: 8px; /* Retaining rounded corners */
+  font-size: 1em; /* Using em for scalability */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-2px);
+}
+
+.pagination-button:disabled {
+  background-color: var(--light-gray);
+  cursor: not-allowed;
+  opacity: 0.8;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.pagination-info {
+  font-size: 1.1em; /* Using em for scalability */
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* --- Back Button (Shared) --- */
+.back-button-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.back-button {
+  padding: 12px 25px;
+  background-color: var(--secondary-button-bg);
+  color: var(--secondary-button-text);
+  border: none;
+  border-radius: 8px; /* Retaining rounded corners */
+  font-size: 1em; /* Using em for scalability */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
+}
+
+.back-button:hover {
+  background-color: var(--secondary-button-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:active { /* Added from product-detail-page.css action-button */
+  background-color: #315e82; /* Darker blue, hardcoded if no specific secondary-active-bg */
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(83, 144, 201, 0.3);
+}
+
+.back-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+/* --- Responsive Adjustments --- */
+
+/* For screens up to 768px (Tablets in portrait, small laptops) */
+@media (max-width: 768px) {
+  .category-page-container,
+  .product-listing-page-container,
+  .product-details-container {
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+
+  .page-title {
+    font-size: 2em; /* Adjusting based on user's media query */
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .product-cards-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .category-card-title {
+    font-size: 1.5em;
+  }
+
+  .product-card-title {
+    font-size: 1.2em;
+  }
+
+
+  /* Product Details Specific Adjustments */
+  .product-name {
+    font-size: 2.2em; /* From product-detail-page.css */
+    margin-bottom: 1.5rem;
+  }
+  .product-image-section {
+    height: 300px; /* From product-detail-page.css */
+    margin-bottom: 1.5rem;
+  }
+  .product-info-grid {
+    font-size: 1em; /* From product-detail-page.css */
+    padding: 1rem 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .info-label {
+    min-width: 120px; /* From product-detail-page.css */
+  }
+  .info-value, .info-value-link, .product-cat-number {
+    font-size: 1em; /* Match info-grid font size */
+  }
+}
+
+/* For screens up to 480px (Larger smartphones in landscape) */
+@media (max-width: 480px) {
+  .category-page-container,
+  .product-listing-page-container,
+  .product-details-container {
+    padding: 1.25rem 0.75rem; /* Adjusting from product-detail-page.css */
+  }
+
+  .page-title {
+    font-size: 1.8em; /* Adjusting from user's media query */
+  }
+
+  /* Product Details Specific Adjustments */
+  .product-name {
+    font-size: 1.8em; /* From product-detail-page.css */
+    margin-bottom: 1.25rem;
+  }
+  .product-image-section {
+    height: 250px; /* From product-detail-page.css */
+    margin-bottom: 1.25rem;
+  }
+  .product-info-grid {
+    font-size: 0.95em; /* From product-detail-page.css */
+    padding: 0; /* Remove horizontal padding on smallest screens */
+    margin-bottom: 1.25rem;
+  }
+  .info-label {
+    min-width: 100px; /* From product-detail-page.css */
+  }
+  .product-info-item {
+    flex-direction: column; /* Stack label and value */
+    align-items: flex-start;
+    margin-bottom: 0.625rem; /* Adjusting from product-detail-page.css */
+  }
+  .info-label {
+    margin-bottom: 0.25rem; /* Space between stacked label and value */
+    min-width: auto; /* Remove min-width when stacked */
+  }
+
+  .back-button {
+    padding: 10px 20px;
+    font-size: 0.95em;
+    width: 100%; /* Make button full width */
+  }
+}
+
+/* For screens up to 320px (Small smartphones in portrait) */
+@media (max-width: 320px) {
+  .category-page-container,
+  .product-listing-page-container,
+  .product-details-container {
+    padding: 1rem 0.5rem; /* Adjusting from user's media query */
+  }
+
+  .page-title {
+    font-size: 1.6em; /* Adjusting from user's media query */
+  }
+
+  /* Product Details Specific Adjustments */
+  .product-name {
+    font-size: 1.6em; /* From product-detail-page.css */
+    margin-bottom: 1rem;
+  }
+  .product-image-section {
+    height: 200px; /* From product-detail-page.css */
+    margin-bottom: 1rem;
+  }
+  .product-info-grid {
+    font-size: 0.9em; /* From product-detail-page.css */
+    margin-bottom: 1.25rem;
+  }
+  .info-label {
+    font-size: 0.95em; /* Make label slightly smaller when stacked */
+  }
+
+  .back-button {
+    padding: 9px 15px;
+    font-size: 0.9em;
+  }
+}

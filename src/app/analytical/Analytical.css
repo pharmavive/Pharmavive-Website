@@ -1,0 +1,92 @@
+.analytical-header {
+  background-color: #5390c9;
+  height: 157px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'museoSlab500', sans-serif;
+  letter-spacing: 10px;
+}
+
+.analytical-header h1 {
+  font-size: 3.5rem;
+  margin-left: 15px;
+}
+
+.analytical-container {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.analytical-content {
+  padding: 40px 90px;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.analytical-flex {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  gap: 40px;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.analytical-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.analytical-list-wrapper {
+  flex: 1;
+}
+
+.analytical-list-wrapper h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-family: 'museoSlab500';
+}
+
+.analytical-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+.analytical-list li {
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.analytical-list li:hover {
+  color: #7f9040;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .analytical-header h1 {
+    font-size: 2rem;
+    letter-spacing: 6px;
+  }
+
+  .analytical-content {
+    padding: 20px;
+  }
+
+  .analytical-flex {
+    flex-direction: column;
+  }
+
+  .analytical-list {
+    font-size: 12px;
+    padding-left: 15px;
+  }
+
+  .analytical-image img {
+    width: 100% !important;
+    height: auto !important;
+  }
+}

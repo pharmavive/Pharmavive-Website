@@ -1,0 +1,9 @@
+/* Signin.css - Modern Scoped Enhancements for Pharmavive Auth Portal */
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.auth-ambient-glow {
+  animation: pulseSubtle 6s ease-in-out infinite;
+}

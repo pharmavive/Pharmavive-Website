@@ -1,0 +1,1263 @@
+@import "tailwindcss";
+
+:root {
+  /* Official Pharmavive Logo Brand Palette */
+  --brand-teal: #08A698;
+  --brand-teal-hover: #078F83;
+  --brand-teal-tint: #E6F7F5;
+  --brand-teal-border: #B3E7E2;
+  --brand-navy: #0E2358;
+  --brand-navy-dark: #060F26;
+
+  /* Scientific Laboratory Palette */
+  --obsidian: #060F26;
+  --pure-white: #FFFFFF;
+  --sterile-gray: #F8FAFC;
+  --hairline: #E2E8F0;
+  --cobalt-brand: #0E2358;
+  --cyan-accent: #08A698;
+  --emerald-stock: #0D9488;
+  --amber-warning: #D97706;
+  --carbon-text: #0F172A;
+  --slate-text: #475569;
+  --muted-text: #94A3B8;
+
+  /* Legacy variables for backwards compatibility with existing component styling */
+  --primary-blue: #0E2358;
+  --accent-green: #08A698;
+  --white: #FFFFFF;
+  --dark-gray: #060F26;
+  --light-gray-bg: #F8FAFC;
+  --medium-gray: #E2E8F0;
+  --text-light-gray: #64748B;
+  --error-red: #DC2626;
+  --success-green: #0D9488;
+  --focus-blue-ring: #08A698;
+  --red-dark-hover: #B91C1C;
+  --green-dark-hover: #078F83;
+  --blue-dark-hover: #060F26;
+  --gray-light-hover: #F1F5F9;
+  --black-text: #0F172A;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--sterile-gray);
+  color: var(--carbon-text);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Monospace specification typography */
+.font-mono, code, kbd, samp, pre {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle scientific background grid patterns */
+.scientific-grid {
+  background-image: linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.scientific-dots {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.scientific-grid-dark {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid var(--cyan-accent);
+  outline-offset: 2px;
+}
+
+/* Prevent harsh rectangular outline boxes inside custom styled inputs and form controls */
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: none !important;
+}
+
+/* ==========================================================================
+   SCIENTIFIC ANIMATION LAYER (Tailwind v4 / Pure GPU-Accelerated CSS)
+   ========================================================================== */
+
+/* 1. Subtle Scientific Grid Drift (Extremely slow, non-distracting) */
+@keyframes gridDrift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 64px 64px;
+  }
+}
+.animated-scientific-grid {
+  animation: gridDrift 60s linear infinite;
+}
+
+/* 2. Molecular Orbital Rotations (CSS-driven SVG) */
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orbitSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+.animate-orbit-slow {
+  transform-origin: 270px 270px;
+  animation: orbitSpin 55s linear infinite;
+}
+.animate-orbit-reverse {
+  transform-origin: 270px 270px;
+  animation: orbitSpinReverse 70s linear infinite;
+}
+.animate-orbit-medium {
+  transform-origin: 270px 270px;
+  animation: orbitSpin 40s linear infinite;
+}
+
+/* 3. Isotopic Substitution Node Breathing Pulse */
+@keyframes nodePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(8, 166, 152, 0.45));
+  }
+}
+.animate-node-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodePulse 4.5s ease-in-out infinite;
+}
+
+/* 4. Progressive Molecular Bond Draw-In Keyframes */
+@keyframes bondDrawProgressive {
+  from {
+    stroke-dashoffset: 240;
+    opacity: 0.2;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+.animate-bond-draw-1 {
+  stroke-dasharray: 240;
+  animation: bondDrawProgressive 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+.animate-bond-draw-2 {
+  stroke-dasharray: 240;
+  animation: bondDrawProgressive 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+.animate-bond-draw-3 {
+  stroke-dasharray: 240;
+  animation: bondDrawProgressive 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both;
+}
+
+/* 5. Laboratory Quartz Refraction Light Sweep */
+@keyframes scientificRefraction {
+  0%, 82% {
+    transform: translateX(-160%) skewX(-20deg);
+    opacity: 0;
+  }
+  86% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(260%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+.animate-quartz-refraction {
+  animation: scientificRefraction 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 6. Reaction Pathway Catalytic Energy Flow */
+@keyframes pathwayFlow {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.animate-pathway-flow {
+  animation: pathwayFlow 4.5s linear infinite;
+}
+
+/* 6b. Kinetic Ambient Micro-Particle Drifts */
+@keyframes particleDrift1 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(8px, -10px, 0);
+    opacity: 0.85;
+  }
+}
+@keyframes particleDrift2 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(-10px, 8px, 0);
+    opacity: 0.9;
+  }
+}
+@keyframes particleDrift3 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate3d(6px, 10px, 0);
+    opacity: 0.8;
+  }
+}
+.animate-particle-1 {
+  animation: particleDrift1 10s ease-in-out infinite;
+}
+.animate-particle-2 {
+  animation: particleDrift2 13s ease-in-out infinite;
+}
+.animate-particle-3 {
+  animation: particleDrift3 11s ease-in-out infinite;
+}
+
+/* 6c. Analytical Fragment Gentle Float & Hero Molecules Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+.animate-float-delayed {
+  animation: floatSlow 7s ease-in-out 1.8s infinite;
+}
+
+/* Hero Molecules Floating & Orbit Physics */
+@keyframes molFloat1 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(12px, -18px, 0) rotate(5deg);
+  }
+  50% {
+    transform: translate3d(-10px, -28px, 0) rotate(-4deg);
+  }
+  75% {
+    transform: translate3d(-16px, -10px, 0) rotate(3deg);
+  }
+}
+.animate-mol-1 {
+  animation: molFloat1 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes molFloat2 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate3d(-18px, 20px, 0) rotate(-7deg) scale(1.03);
+  }
+  66% {
+    transform: translate3d(16px, 12px, 0) rotate(6deg) scale(0.98);
+  }
+}
+.animate-mol-2 {
+  animation: molFloat2 24s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes molFloat3 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(16px, -22px, 0) rotate(8deg);
+  }
+}
+.animate-mol-3 {
+  animation: molFloat3 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes molFloatLattice {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-12px, -16px, 0) scale(1.02);
+  }
+}
+.animate-mol-lattice {
+  animation: molFloatLattice 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* 7. Staggered Hero Entrance Animations (Fade + subtle lift) */
+@keyframes fadeUpEntrance {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.hero-enter-1 {
+  animation: fadeUpEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.02s both;
+}
+.hero-enter-2 {
+  animation: fadeUpEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+.hero-enter-3 {
+  animation: fadeUpEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.14s both;
+}
+.hero-enter-4 {
+  animation: fadeUpEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both;
+}
+.hero-enter-5 {
+  animation: fadeUpEntrance 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.26s both;
+}
+.hero-artwork-enter {
+  animation: fadeUpEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.10s both;
+}
+
+/* 8. IntersectionObserver Scroll Reveal System */
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: scale(0.975);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.scroll-reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Subtle staggered delay utility classes for lists/grids */
+.delay-75  { transition-delay: 75ms; }
+.delay-100 { transition-delay: 100ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-225 { transition-delay: 225ms; }
+.delay-250 { transition-delay: 250ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-350 { transition-delay: 350ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* 9. Scientific Card Elevation & Hover Dynamics */
+.card-hover-scientific {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.35s ease;
+  will-change: transform, box-shadow;
+  transform: translate3d(0, 0, 0);
+}
+.card-hover-scientific:hover {
+  transform: translate3d(0, -4px, 0);
+  border-color: rgba(8, 166, 152, 0.45);
+  box-shadow: 0 16px 32px -8px rgba(14, 35, 88, 0.08),
+              0 4px 14px -2px rgba(8, 166, 152, 0.12);
+}
+
+/* 10. Interactive Button Micro-Interactions */
+.btn-scientific-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease;
+  will-change: transform, box-shadow;
+}
+.btn-scientific-primary:hover {
+  transform: translate3d(0, -1.5px, 0);
+  box-shadow: 0 8px 20px -4px rgba(0, 163, 137, 0.35);
+}
+.btn-scientific-primary:active {
+  transform: translate3d(0, 0, 0) scale(0.98);
+}
+
+.btn-scientific-secondary {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              color 0.25s ease,
+              background-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+.btn-scientific-secondary:hover {
+  transform: translate3d(0, -1.5px, 0);
+  border-color: #00A389;
+  color: #00A389;
+  box-shadow: 0 6px 16px -4px rgba(14, 35, 88, 0.08);
+}
+.btn-scientific-secondary:active {
+  transform: translate3d(0, 0, 0) scale(0.98);
+}
+
+/* 11. Workflow Connector Line Animation */
+@keyframes lineDrawProgressive {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.animate-line-draw {
+  animation: lineDrawProgressive 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+/* 12. Dynamic Badge & Counter Bounce Keyframes */
+@keyframes badgeBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.25);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+}
+.animate-badge-bounce {
+  animation: badgeBounce 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+/* 13. Enquiry Cart Drawer Keyframes */
+@keyframes drawerSlideIn {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-drawer-slide {
+  animation: drawerSlideIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-backdrop-fade {
+  animation: fadeInBackdrop 0.25s ease-out forwards;
+}
+
+/* 14. Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  .animate-orbit-slow,
+  .animate-orbit-reverse,
+  .animate-orbit-medium,
+  .animate-particle-1,
+  .animate-particle-2,
+  .animate-particle-3,
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-mol-1,
+  .animate-mol-2,
+  .animate-mol-3,
+  .animate-mol-lattice {
+    animation-play-state: paused;
+  }
+}
+
+/* 15. Strict Accessibility: Prefers-Reduced-Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-reveal,
+  .scroll-reveal-scale,
+  .card-hover-scientific,
+  .btn-scientific-primary,
+  .btn-scientific-secondary {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-enter-1,
+  .hero-enter-2,
+  .hero-enter-3,
+  .hero-enter-4,
+  .hero-enter-5,
+  .hero-artwork-enter,
+  .animate-bond-draw-1,
+  .animate-bond-draw-2,
+  .animate-bond-draw-3,
+  .animate-quartz-refraction,
+  .animate-particle-1,
+  .animate-particle-2,
+  .animate-particle-3,
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-mol-1,
+  .animate-mol-2,
+  .animate-mol-3,
+  .animate-mol-lattice,
+  .animate-drawer-slide,
+  .animate-backdrop-fade,
+  .animate-badge-bounce,
+  .animate-line-draw,
+  .animate-pulse-subtle,
+  .cascade-center-to-left,
+  .cascade-right-to-center,
+  .cascade-center-to-right,
+  .cascade-left-to-center {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   16. PRODUCT SHOWCASE: CENTER-STAGE 3D DEPTH CARD CAROUSEL
+   ========================================================================== */
+:root {
+  --peek-offset: 58px;
+  --peek-scale: 0.92;
+  --peek-opacity: 0.62;
+  --peek-depth: -40px;
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --peek-offset: 46px;
+    --peek-scale: 0.92;
+    --peek-opacity: 0.58;
+    --peek-depth: -35px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --peek-offset: 36px;
+    --peek-scale: 0.93;
+    --peek-opacity: 0.55;
+    --peek-depth: -30px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --peek-offset: 16px;
+    --peek-scale: 0.94;
+    --peek-opacity: 0.45;
+    --peek-depth: -20px;
+  }
+}
+
+/* Static resting slot styles for Center-Stage 3D Depth Carousel */
+.depth-slot-active {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  z-index: 30;
+  filter: blur(0px);
+  pointer-events: auto;
+}
+
+.depth-slot-left {
+  transform: translate3d(calc(-1 * var(--peek-offset)), 0, var(--peek-depth)) scale(var(--peek-scale));
+  opacity: var(--peek-opacity);
+  z-index: 10;
+  filter: blur(0.3px);
+  pointer-events: none;
+}
+
+.depth-slot-right {
+  transform: translate3d(var(--peek-offset), 0, var(--peek-depth)) scale(var(--peek-scale));
+  opacity: var(--peek-opacity);
+  z-index: 10;
+  filter: blur(0.3px);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   NEXT ANIMATIONS: Active glides to Left, Right advances to Active,
+   Left exits, New card enters Right
+   -------------------------------------------------------------------------- */
+@keyframes depthStageNextActiveToLeft {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translate3d(calc(-1 * var(--peek-offset)), 0, var(--peek-depth)) scale(var(--peek-scale));
+    opacity: var(--peek-opacity);
+    filter: blur(0.3px);
+  }
+}
+
+@keyframes depthStageNextRightToActive {
+  0% {
+    transform: translate3d(var(--peek-offset), 0, var(--peek-depth)) scale(var(--peek-scale));
+    opacity: var(--peek-opacity);
+    filter: blur(0.3px);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes depthStageNextLeftExit {
+  0% {
+    transform: translate3d(calc(-1 * var(--peek-offset)), 0, var(--peek-depth)) scale(var(--peek-scale));
+    opacity: var(--peek-opacity);
+    filter: blur(0.3px);
+  }
+  100% {
+    transform: translate3d(calc(-1.75 * var(--peek-offset)), 0, calc(var(--peek-depth) * 1.6)) scale(calc(var(--peek-scale) * 0.9));
+    opacity: 0;
+    filter: blur(1.5px);
+  }
+}
+
+@keyframes depthStageNextEnterRight {
+  0% {
+    transform: translate3d(calc(1.75 * var(--peek-offset)), 0, calc(var(--peek-depth) * 1.6)) scale(calc(var(--peek-scale) * 0.9));
+    opacity: 0;
+    filter: blur(1.5px);
+  }
+  100% {
+    transform: translate3d(var(--peek-offset), 0, var(--peek-depth)) scale(var(--peek-scale));
+    opacity: var(--peek-opacity);
+    filter: blur(0.3px);
+  }
+}
+
+.anim-stage-next-active-to-left {
+  animation: depthStageNextActiveToLeft 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+  z-index: 20;
+}
+
+.anim-stage-next-right-to-active {
+  animation: depthStageNextRightToActive 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+  z-index: 30;
+}
+
+.anim-stage-next-left-exit {
+  animation: depthStageNextLeftExit 440ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+  z-index: 5;
+}
+
+.anim-stage-next-enter-right {
+  animation: depthStageNextEnterRight 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+  z-index: 10;
+}
+
+/* --------------------------------------------------------------------------
+   PREVIOUS ANIMATIONS: Active glides to Right, Left advances to Active,
+   Right exits, New card enters Left
+   -------------------------------------------------------------------------- */
+@keyframes depthStagePrevActiveToRight {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translate3d(var(--peek-offset), 0, var(--peek-depth)) scale(var(--peek-scale));
+    opacity: var(--peek-opacity);
+    filter: blur(0.3px);
+  }
+}
+
+@keyframes depthStagePrevLeftToActive {
+  0% {
+    transform: translate3d(calc(-1 * var(--peek-offset)), 0, var(--peek-depth)) scale(var(--peek-scale));
+    opacity: var(--peek-opacity);
+    filter: blur(0.3px);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes depthStagePrevRightExit {
+  0% {
+    transform: translate3d(var(--peek-offset), 0, var(--peek-depth)) scale(var(--peek-scale));
+    opacity: var(--peek-opacity);
+    filter: blur(0.3px);
+  }
+  100% {
+    transform: translate3d(calc(1.75 * var(--peek-offset)), 0, calc(var(--peek-depth) * 1.6)) scale(calc(var(--peek-scale) * 0.9));
+    opacity: 0;
+    filter: blur(1.5px);
+  }
+}
+
+@keyframes depthStagePrevEnterLeft {
+  0% {
+    transform: translate3d(calc(-1.75 * var(--peek-offset)), 0, calc(var(--peek-depth) * 1.6)) scale(calc(var(--peek-scale) * 0.9));
+    opacity: 0;
+    filter: blur(1.5px);
+  }
+  100% {
+    transform: translate3d(calc(-1 * var(--peek-offset)), 0, var(--peek-depth)) scale(var(--peek-scale));
+    opacity: var(--peek-opacity);
+    filter: blur(0.3px);
+  }
+}
+
+.anim-stage-prev-active-to-right {
+  animation: depthStagePrevActiveToRight 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+  z-index: 20;
+}
+
+.anim-stage-prev-left-to-active {
+  animation: depthStagePrevLeftToActive 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+  z-index: 30;
+}
+
+.anim-stage-prev-right-exit {
+  animation: depthStagePrevRightExit 440ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+  z-index: 5;
+}
+
+.anim-stage-prev-enter-left {
+  animation: depthStagePrevEnterLeft 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity, filter;
+  z-index: 10;
+}
+
+/* --------------------------------------------------------------------------
+   MOLECULAR ACTIVATION & METADATA STAGGER
+   -------------------------------------------------------------------------- */
+@keyframes molStructureScaleIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.88;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes molMetaFadeStagger {
+  0% {
+    opacity: 0.5;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mol-structure-active {
+  animation: molStructureScaleIn 450ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.mol-meta-row-1 {
+  animation: molMetaFadeStagger 360ms cubic-bezier(0.22, 1, 0.36, 1) 30ms forwards;
+}
+.mol-meta-row-2 {
+  animation: molMetaFadeStagger 360ms cubic-bezier(0.22, 1, 0.36, 1) 70ms forwards;
+}
+.mol-meta-row-3 {
+  animation: molMetaFadeStagger 360ms cubic-bezier(0.22, 1, 0.36, 1) 110ms forwards;
+}
+.mol-meta-row-4 {
+  animation: molMetaFadeStagger 360ms cubic-bezier(0.22, 1, 0.36, 1) 150ms forwards;
+}
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .depth-slot-active,
+  .depth-slot-left,
+  .depth-slot-right,
+  .anim-stage-next-active-to-left,
+  .anim-stage-next-right-to-active,
+  .anim-stage-next-left-exit,
+  .anim-stage-next-enter-right,
+  .anim-stage-prev-active-to-right,
+  .anim-stage-prev-left-to-active,
+  .anim-stage-prev-right-exit,
+  .anim-stage-prev-enter-left,
+  .mol-structure-active,
+  .mol-meta-row-1,
+  .mol-meta-row-2,
+  .mol-meta-row-3,
+  .mol-meta-row-4 {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 180ms ease !important;
+  }
+}
+
+/* ==========================================================================
+   17. RADIANT GLOW & HIGH-TECH SCIENTIFIC ANIMATION SUITE
+   ========================================================================== */
+
+/* Ambient Organic Aurora Pulse - GPU Transform Only (No Opacity / Repaint Thrashing) */
+@keyframes auroraPulse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(5px, -4px, 0) scale(1.04);
+  }
+}
+
+.animate-aurora-glow {
+  animation: auroraPulse 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-aurora-glow-delayed {
+  animation: auroraPulse 10s ease-in-out 3s infinite;
+  will-change: transform;
+}
+
+/* Radiant Luminescence Pulse for Glow Halos */
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* Sleek Specular Light Shimmer Sweep across buttons/cards */
+@keyframes specularSweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  40%, 100% {
+    transform: translateX(250%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.animate-shimmer-sweep {
+  animation: specularSweep 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Border Beam Shimmer for premium badges */
+@keyframes borderBeamMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-border-beam {
+  background-size: 200% 200%;
+  animation: borderBeamMove 4s ease infinite;
+}
+
+/* Scientific Float Physics */
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+.animate-float-soft {
+  animation: floatSoft 5s ease-in-out infinite;
+}
+
+/* Enhanced Card Glow Hover - GPU Hardware Accelerated */
+.card-glow-hover {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.card-glow-hover:hover {
+  transform: translate3d(0, -3px, 0);
+  border-color: rgba(0, 229, 190, 0.65) !important;
+  box-shadow: 0 12px 28px -6px rgba(14, 35, 88, 0.1),
+              0 0 16px -2px rgba(0, 163, 137, 0.2) !important;
+}
+
+/* Glow Badges */
+.glow-cyan-badge {
+  box-shadow: 0 0 12px rgba(0, 229, 190, 0.35);
+}
+
+.glow-teal-pill {
+  box-shadow: 0 0 16px rgba(0, 163, 137, 0.32);
+}
+
+.glow-orb-halo {
+  box-shadow: 0 0 30px rgba(0, 163, 137, 0.45), 0 0 60px rgba(0, 229, 190, 0.25);
+}
+
+.text-glow-teal {
+  text-shadow: 0 0 16px rgba(0, 229, 190, 0.45);
+}
+
+/* ==========================================================================
+   18. Moving Glow Line Border Beam (User Requested)
+   Perimeter-tracing luminous glow beam for Log In & Sign Up buttons
+   Matches user reference image: bright white core, cyan/teal aura, smooth rotation
+   ========================================================================== */
+
+@keyframes borderGlowSpin {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.moving-glow-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: rgba(0, 163, 137, 0.25);
+  box-shadow: 0 2px 12px -2px rgba(0, 163, 137, 0.35);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  cursor: pointer;
+  contain: paint;
+  z-index: 1;
+}
+
+.moving-glow-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 229, 190, 0.4), 0 0 10px rgba(0, 163, 137, 0.3);
+}
+
+.moving-glow-btn:active {
+  transform: scale(0.98);
+}
+
+.moving-glow-beam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  transform: translate3d(-50%, -50%, 0);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 280deg,
+    rgba(0, 229, 190, 0.3) 305deg,
+    rgba(0, 229, 190, 0.95) 338deg,
+    #ffffff 352deg,
+    rgba(0, 229, 190, 0.95) 358deg,
+    transparent 360deg
+  );
+  animation: borderGlowSpin 10s linear infinite;
+  will-change: transform;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.moving-glow-beam-bloom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  transform: translate3d(-50%, -50%, 0);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 285deg,
+    rgba(0, 229, 190, 0.5) 330deg,
+    #ffffff 352deg,
+    transparent 360deg
+  );
+  animation: borderGlowSpin 10s linear infinite;
+  will-change: transform;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.moving-glow-inner {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #0d3835 0%, #082928 100%);
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.3s ease;
+}
+
+.moving-glow-btn:hover .moving-glow-inner {
+  background: linear-gradient(135deg, #0f4440 0%, #0a3331 100%);
+}
+
+.moving-glow-inner-teal {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #00897B 0%, #00695C 100%);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: background 0.3s ease;
+}
+
+.moving-glow-btn:hover .moving-glow-inner-teal {
+  background: linear-gradient(135deg, #009688 0%, #00796B 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moving-glow-beam,
+  .moving-glow-beam-bloom {
+    animation: none;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 229, 190, 0.4);
+  }
+}
+
+/* ==========================================================================
+   17. HERO SLIDESHOW: CARD MOVING GLOW BORDER (MATCHING LOG IN / SIGN UP BUTTON)
+   ========================================================================== */
+
+.moving-glow-card {
+  position: relative;
+  display: flex;
+  padding: 2.5px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: rgba(0, 163, 137, 0.25);
+  box-shadow: 0 4px 24px -2px rgba(0, 163, 137, 0.35);
+  contain: paint;
+  z-index: 1;
+}
+
+.moving-glow-card .moving-glow-beam,
+.moving-glow-card .moving-glow-beam-bloom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1000px;
+  height: 1000px;
+  transform: translate3d(-50%, -50%, 0);
+  pointer-events: none;
+  animation-duration: 10s;
+}
+
+/* Chemical Slideshow Inner Content Smooth Transitions */
+@keyframes slideContentInNext {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideContentOutNext {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+}
+
+@keyframes slideContentInPrev {
+  from {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideContentOutPrev {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+}
+
+.slide-content-in-next {
+  animation: slideContentInNext 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.slide-content-out-next {
+  animation: slideContentOutNext 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.slide-content-in-prev {
+  animation: slideContentInPrev 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.slide-content-out-prev {
+  animation: slideContentOutPrev 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+[
+  {
+    "id": "usr_mtvd82or",
+    "name": "Naman Saini",
+    "email": "namansaini.7404@gmail.com",
+    "password": "e1a90c2373e8e7a6633d28414510db58:328b07a70295ab8883bc50d323b97a39364e574a6628a1546d9b20ac177dabc115a3da1bf41fbd3152f1f7c6b5360f44696e360155e4d33f419c09916d6247db",
+    "institution": "",
+    "role": "Pharma R&D",
+    "isAdmin": false,
+    "createdAt": "2026-09-10T10:09:21.051Z",
+    "updatedAt": "2026-09-10T12:17:49.987Z",
+    "phone": "+91 63026 16273",
+    "country": "India"
+  }
+]

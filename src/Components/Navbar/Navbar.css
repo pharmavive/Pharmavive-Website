@@ -1,0 +1,276 @@
+/* Custom Fonts */
+@font-face {
+    font-family: 'MuseoSlab900';
+    src: url('../Assets/Fonts/museo_slab_900.otf');
+}
+
+@font-face {
+    font-family: 'Proxireg';
+    src: url('../Assets/Fonts/proxireg.otf');
+}
+
+/* Navbar Styles */
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    box-shadow: 0 1px 3px -2px black;
+}
+
+
+.nav-logo {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: auto;
+}
+
+
+.nav-searchbar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 360px;         /* Wider for better usability */
+    max-width: 90vw;      /* Responsive on small screens */
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #ccc;
+}
+
+.navbar-search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 8px 12px;
+    background-color: #fff;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-search-input:focus {
+    background-color: #fff;
+    box-shadow: 0 0 5px 2px #007bff66;
+}
+
+.nav-logo img {
+    width: 180px;
+}
+
+.nav-logo p {
+    color: #171717;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* Navbar Menu */
+.nav-items {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 40px;
+    color: black;
+    font-family: 'MuseoSlab900';
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-items li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.nav-items ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.nav-items li:hover {
+    color: #5390c9;
+    transition: color 0.3s ease;
+}
+
+.nav-items ul:hover {
+    color: #5390c9;
+    transition: color 0.3s ease;
+}
+
+/* Dropdown and Search Icon */
+.nav-dropdown {
+    display: none;
+    color: #5390c9;
+}
+
+.nav-search:hover {
+    color: #5390c9;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    background-color: white;
+    list-style: none;
+    padding: 10px 0;
+    font-family: 'MuseoSlab900';
+    font-size: 14px;
+    font-weight: 400;
+    z-index: 1000;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+#more-dropdown-toggle{
+    left: -300%;
+}
+
+#services-dropdown-toggle{
+    left: -100%;
+}
+
+.dropdown-menu.open {
+    display: block;
+
+}
+
+/* Hover Effect on Dropdown Items */
+.dropdown-menu li {
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+    background-color: #5390c9;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/* Burger Icon Styles (Mobile) */
+.burger-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.burger-icon.open {
+    transition: transform 0.3s ease;
+}
+
+/* Mobile Menu */
+.nav-links.open {
+    display: block;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-search-mobile {
+    display: none;
+}
+
+/* Mobile Layout Adjustments */
+@media(max-width: 1200px) {
+
+  .nav-search-mobile {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+    .nav-links {
+        display: none;
+    }
+
+    .burger-icon {
+        display: block;
+    }
+
+    .nav-items {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+    }
+
+    .nav-searchbar {
+
+    display: none;
+
+    }
+
+    .nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+}
+
+
+/* On Small Devices */
+@media(max-width: 500px) {
+    .navbar {
+        padding: 30px 10px;
+    }
+
+    .nav-logo img {
+        width: 120px;
+    }
+
+    .nav-logo p {
+        font-size: 18px;
+    }
+
+    .nav-items li {
+        font-size: 14px;
+    }
+}

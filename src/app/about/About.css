@@ -1,0 +1,172 @@
+.about-container {
+  font-family: sans-serif;
+}
+
+.about-header {
+  position: relative;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.arrow {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Positioning the "About Pharmavive" text */
+.about-pharmavive-text {
+  position: absolute;
+  bottom: 30px;
+  left: 0px;
+  background-color: white;
+  color: black;
+  padding: 10px 15px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.about-content {
+  padding: 40px 50px;
+}
+
+.about-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap; 
+}
+
+.about-box {
+  flex: 1; 
+  margin-right: 30px;
+}
+
+.about-box h2 {
+  font-family: 'museoSlab500', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin-bottom: 9px;
+}
+
+.about-paragraph {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-family: proxireg;
+  letter-spacing: 1px;
+}
+
+.quote-text {
+  font-style: bold;
+  font-size: 1.2rem;
+  color: white;
+  font-family: proxireg;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+.quote {
+  background-color: #5390c9;
+  padding: 70px;
+  position: relative;
+}
+
+.quote-mark {
+  font-size: 108px;
+  font-style: italic;
+  font-weight: bold;
+  padding: 0;
+  position: absolute;
+  color: white;
+}
+
+.top-left {
+  top: 0px;
+  left: 10px;
+}
+
+.bottom-right {
+  bottom: -50px;
+  right: 30px;
+}
+
+@media screen and (max-width: 768px) {
+
+
+  .about-header {
+    height: 300px;
+  }
+
+  .overlay h1 {
+    font-size: 2rem;
+    letter-spacing: 3px;
+  }
+
+  .about-flex {
+    padding: 20px 30px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-box {
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .about-box h2 {
+    font-size: 24px;
+  }
+
+  .about-paragraph {
+    font-size: 0.95rem;
+  }
+
+  .quote {
+    padding: 40px;
+  }
+
+  .quote-mark {
+    font-size: 80px;
+  }
+
+  .about-pharmavive-text {
+  position: absolute;
+  bottom: 30px;
+  left: 0px;
+  background-color: white;
+  color: black;
+  padding: 10px 15px;
+  font-size: 20px;
+  }
+
+  .about-content {
+  padding: 10px 5px;
+ }
+}

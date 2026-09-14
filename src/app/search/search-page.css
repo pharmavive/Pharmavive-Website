@@ -1,0 +1,99 @@
+/* --- Search Bar Container --- */
+.search-bar-container {
+  width: 100%;
+  max-width: 600px; /* Limit width of the search bar for focus on larger screens */
+  margin-top: 40px; /* Explicit top margin as provided */
+  margin-left: 40px; /* Explicit left margin as provided */
+  margin-bottom: 40px; /* Space below search bar before results/messages */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Soft shadow for the bar */
+  transition: box-shadow 0.3s ease; /* Smooth transition for hover/focus */
+  border: 1px solid #e0e0e0; /* Consistent with other containers */
+  background-color: #ffffff; /* Consistent with other containers */
+  box-sizing: border-box; /* Include padding/border in element's total width */
+}
+
+.search-bar-container {
+  display: none;
+}
+
+.search-bar-container:focus-within {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow on focus */
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 20px; /* Generous padding for input field */
+  font-size: 1.1em;
+  border: none; /* Border is on the container, not input, for a cleaner look */
+  background-color: #ffffff; /* White background for the input area */
+  color: #1a1a1a;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  /* Remove default browser styling for consistency across platforms */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.search-input::placeholder {
+  color: #999999;
+  font-style: italic;
+}
+
+.search-input:focus {
+  outline: none; /* Remove default outline, as container's box-shadow acts as focus indicator */
+  /* Box shadow and border color handled by .search-bar-container:focus-within */
+}
+
+
+/* --- Responsive Design for Search Bar --- */
+
+/* For screens up to 768px (Tablets in portrait, small laptops) */
+@media (max-width: 1200px) {
+    .search-bar-container {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-bar-container {
+    margin-top: 30px; /* Slightly reduced top margin */
+    margin-left: auto; /* Center horizontally on smaller screens */
+    margin-right: auto; /* Center horizontally on smaller screens */
+    margin-bottom: 30px; /* Slightly reduced bottom margin */
+    max-width: 90%; /* Allow it to take up more width */
+  }
+
+  .search-input {
+    padding: 12px 15px; /* Reduced padding for compact screens */
+    font-size: 1em; /* Slightly smaller font size */
+  }
+}
+
+/* For screens up to 480px (Larger smartphones in landscape) */
+@media (max-width: 480px) {
+  .search-bar-container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    max-width: 95%; /* Further expand width */
+  }
+
+  .search-input {
+    padding: 10px 12px;
+    font-size: 0.95em;
+  }
+}
+
+/* For screens up to 320px (Small smartphones in portrait) */
+@media (max-width: 320px) {
+  .search-bar-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 100%; /* Full width for very small screens */
+  }
+
+  .search-input {
+    padding: 8px 10px;
+    font-size: 0.9em;
+  }
+}

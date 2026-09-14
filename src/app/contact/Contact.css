@@ -1,0 +1,81 @@
+.contact-header {
+  background-color: #5390c9;
+  height: 157px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'museoSlab500', sans-serif;
+  letter-spacing: 10px;
+}
+
+.contact-header h1 {
+  font-size: 4.5rem;
+}
+
+.contact-info {
+  padding-top: 40px;
+  padding-left: 90px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.contact-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-family: 'museoSlab500';
+}
+
+.contact-info p {
+  font-size: 14px;
+  margin: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.contact-info p:hover {
+  color: #7f9040;
+}
+
+.contact-info .phone, .contact-info .email {
+  cursor: pointer;
+}
+
+.map-container {
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.map-container iframe {
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .contact-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .contact-info {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .contact-info h2 {
+    font-size: 18px;
+  }
+
+  .contact-info p {
+    font-size: 12px;
+  }
+
+  .map-container iframe {
+    width: 100%; /* Make the map container responsive */
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-header h1 {
+    font-size: 20px;
+    letter-spacing: 6px;
+  }
+}

@@ -1,0 +1,67 @@
+.products-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.product-item {
+  position: relative;
+  width: 100vh;
+}
+
+.product-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.product-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: black;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  width: auto;
+  font-family: 'museoSlab500', sans-serif;
+  z-index: 2;
+}
+
+.product-item:hover::after {
+  content: ''; /* Create the overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(83, 144, 201, 0.85);
+  z-index: 1; 
+}
+
+@media (max-width: 768px) {
+  .products-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .product-item {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Ensures a rectangular shape */
+    overflow: hidden;
+  }
+
+  .product-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents distortion, fills the box */
+  }
+
+  .product-label {
+    font-size: 28px;
+    padding: 8px;
+  }
+}
