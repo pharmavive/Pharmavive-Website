@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GeistSans, GeistMono } from "geist/font";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import NavbarWrapper from "../Components/Navbar/NavbarWrapper.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
@@ -7,6 +8,12 @@ import FroxyAssistant from "../Components/Froxy/FroxyAssistant.jsx";
 import NextAuthSessionProvider from './providers';
 import { EnquiryCartProvider } from '@/context/EnquiryCartContext';
 import EnquiryCartDrawer from '@/Components/EnquiryCart/EnquiryCartDrawer';
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Pharmavive | Precision Chemical Synthesis & Reference Standards",
@@ -23,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col bg-slate-50 text-slate-900`}>
+      <body className={`${inter.variable} ${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col bg-slate-50 text-slate-900`}>
         <NextAuthSessionProvider>
           <EnquiryCartProvider>
             <NavbarWrapper />

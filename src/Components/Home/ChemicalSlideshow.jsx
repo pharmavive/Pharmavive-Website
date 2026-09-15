@@ -11,67 +11,148 @@ import {
   IoPersonOutline,
   IoGitNetworkOutline,
   IoCubeOutline,
-  IoBarcodeOutline,
+  IoFlaskOutline,
+  IoRemoveOutline,
+  IoAddOutline,
 } from 'react-icons/io5';
 import { useEnquiryCart } from '@/context/EnquiryCartContext';
 import { prefetchProduct } from '@/utils/clientCache';
 
 const CHEMICAL_SLIDES = [
   {
-    id: 'zabedosertib-reagent-intermediate',
-    badge: 'Reagent',
-    name: 'N-(6-(2-Hydroxypropan-2-yl)-1-(2-(methylsulfonyl)ethyl)-1H-indazol-5-yl)-6-(trifluoromethyl)picolinamide',
-    chemicalName: 'N-(6-(2-Hydroxypropan-2-yl)-1-(2-(methylsulfonyl)ethyl)-1H-indazol-5-yl)-6-(trifluoromethyl)picolinamide',
-    catNumber: 'PV-REA-2751',
-    casNumber: '2751749-06-9',
-    molecularWeight: '470.47 g/mol',
-    molecularFormula: 'C₂₀H₂₁F₃N₄O₄S',
-    category: 'Reagents',
-    formulaSubscript: 'C₂₀H₂₁F₃N₄O₄S',
-    structureImage: '/excel_structures/excel_structure_1.png',
-    link: '/products/browse/zabedosertib/zabedosertib-reagent-intermediate',
+    id: '-cyclodextrin-epichlorohydrin-polymer',
+    badge: 'Specialty Polymer',
+    name: 'β-Cyclodextrin Epichlorohydrin Polymer',
+    chemicalName: 'β-Cyclodextrin Epichlorohydrin Polymer',
+    description: 'A specialized crosslinked cyclodextrin polymer used for molecular encapsulation and drug delivery research.',
+    catNumber: 'PV-CDX-2565',
+    casNumber: '25655-42-9',
+    molecularWeight: '272.68 g/mol',
+    molecularFormula: 'C₉H₁₇ClO₇',
+    category: 'Cyclodextrins',
+    formulaSubscript: 'C₉H₁₇ClO₇',
+    structureImage: '/excel_structures/structure_cas_25655-42-9.png',
+    link: '/products/browse/cyclodextrins/-cyclodextrin-epichlorohydrin-polymer',
   },
   {
-    id: '5-piperazin-1-yl-benzofuran-2-carboxamide',
+    id: 'cyclosporin-a',
+    badge: 'Active Standard',
+    name: 'Cyclosporin A',
+    chemicalName: 'Cyclosporin A',
+    description: 'A cyclic nonribosomal peptide immunosuppressant standard used in therapeutic drug monitoring.',
+    catNumber: 'PV-CYC-5986',
+    casNumber: '59865-13-3',
+    molecularWeight: '1202.61 g/mol',
+    molecularFormula: 'C₆₂H₁₁₁N₁₁O₁₂',
+    category: 'Cyclosporin',
+    formulaSubscript: 'C₆₂H₁₁₁N₁₁O₁₂',
+    structureImage: '/excel_structures/structure_cas_59865-13-3.png',
+    link: '/products/browse/cyclosporin/cyclosporin-a',
+  },
+  {
+    id: 'dantrolene-sodium-salt-hemiheptahydrate',
     badge: 'Reference Standard',
-    name: '5-(Piperazin-1-yl)benzofuran-2-carboxamide',
-    chemicalName: '5-(Piperazin-1-yl)benzofuran-2-carboxamide',
-    catNumber: 'PV-STD-1832',
-    casNumber: '183288-46-2',
-    molecularWeight: '245.28 g/mol',
-    molecularFormula: 'C₁₃H₁₅N₃O₂',
-    category: 'Reference Standards',
-    formulaSubscript: 'C₁₃H₁₅N₃O₂',
-    structureImage: '/excel_structures/excel_structure_2.png',
-    link: '/products/browse/vilazodone/5-piperazin-1-yl-benzofuran-2-carboxamide',
+    name: 'Dantrolene Sodium Salt Hemiheptahydrate',
+    chemicalName: 'Dantrolene Sodium Salt Hemiheptahydrate',
+    description: 'A post-synaptic muscle relaxant reference standard for analytical assays and formulation studies.',
+    catNumber: 'PV-DAN-2486',
+    casNumber: '24868-20-0',
+    molecularWeight: '798.57 g/mol',
+    molecularFormula: 'C₂₈H₃₂N₈Na₂O₁₇',
+    category: 'Dantrolene',
+    formulaSubscript: 'C₂₈H₃₂N₈Na₂O₁₇',
+    structureImage: '/excel_structures/structure_cas_24868-20-0.png',
+    link: '/products/browse/dantrolene/dantrolene-sodium-salt-hemiheptahydrate',
   },
   {
-    id: 'moxifloxacin-difluoro-methoxy-impurity',
-    badge: 'Impurity',
-    name: '1-Cyclopropyl-6,7-difluoro-8-methoxy-4-oxo-1,4-dihydroquinoline-3-carboxylic acid',
-    chemicalName: '1-Cyclopropyl-6,7-difluoro-8-methoxy-4-oxo-1,4-dihydroquinoline-3-carboxylic acid',
-    catNumber: 'PV-MXF-1128',
-    casNumber: '112811-72-0',
-    molecularWeight: '295.24 g/mol',
-    molecularFormula: 'C₁₄H₁₁F₂NO₄',
-    category: 'Impurity',
-    formulaSubscript: 'C₁₄H₁₁F₂NO₄',
-    structureImage: '/excel_structures/excel_structure_3.png',
-    link: '/products/browse/moxifloxacin/moxifloxacin-difluoro-methoxy-impurity',
+    id: 'dihydrostreptomycin-sulfate',
+    badge: 'Antibiotic Standard',
+    name: 'Dihydrostreptomycin Sulfate',
+    chemicalName: 'Dihydrostreptomycin Sulfate',
+    description: 'An aminoglycoside antibiotic reference standard utilized in antibacterial research and purity assays.',
+    catNumber: 'PV-DHS-5490',
+    casNumber: '5490-27-7',
+    molecularWeight: '730.71 g/mol',
+    molecularFormula: 'C₂₁H₄₁N₇O₁₂ · 1.5H₂SO₄',
+    category: 'Streptomycin',
+    formulaSubscript: 'C₂₁H₄₁N₇O₁₂ · 1.5H₂SO₄',
+    structureImage: '/excel_structures/structure_cas_5490-27-7.png',
+    link: '/products/browse/streptomycin/dihydrostreptomycin-sulfate',
   },
   {
-    id: 'eletriptan-bromo-indole-impurity',
-    badge: 'Impurity',
-    name: '(R)-Benzyl 2-(5-bromo-1H-indole-3-carbonyl)pyrrolidine-1-carboxylate',
-    chemicalName: '(R)-Benzyl 2-(5-bromo-1H-indole-3-carbonyl)pyrrolidine-1-carboxylate',
-    catNumber: 'PV-ELT-1433',
-    casNumber: '143322-56-9',
-    molecularWeight: '427.29 g/mol',
-    molecularFormula: 'C₂₁H₁₉BrN₂O₃',
-    category: 'Impurity',
-    formulaSubscript: 'C₂₁H₁₉BrN₂O₃',
-    structureImage: '/excel_structures/excel_structure_4.png',
-    link: '/products/browse/eletriptan/eletriptan-bromo-indole-impurity',
+    id: 'dirithromycin',
+    badge: 'Macrolide Standard',
+    name: 'Dirithromycin',
+    chemicalName: 'Dirithromycin',
+    description: 'An advanced macrolide antibiotic derivative for antimicrobial efficacy and impurity profiling.',
+    catNumber: 'PV-DIR-6201',
+    casNumber: '62013-04-1',
+    molecularWeight: '835.09 g/mol',
+    molecularFormula: 'C₄₂H₇₈N₂O₁₄',
+    category: 'Dirithromycin',
+    formulaSubscript: 'C₄₂H₇₈N₂O₁₄',
+    structureImage: '/excel_structures/structure_cas_62013-04-1.png',
+    link: '/products/browse/dirithromycin/dirithromycin',
+  },
+  {
+    id: 'ginsenoside-ro',
+    badge: 'Phytochemical Standard',
+    name: 'Ginsenoside Ro',
+    chemicalName: 'Ginsenoside Ro',
+    description: 'An oleanolic acid-type triterpenoid saponin reference standard for phytochemical and metabolic research.',
+    catNumber: 'PV-GIN-3436',
+    casNumber: '34367-04-9',
+    molecularWeight: '957.12 g/mol',
+    molecularFormula: 'C₄₈H₇₆O₁₉',
+    category: 'Ginsenosides',
+    formulaSubscript: 'C₄₈H₇₆O₁₉',
+    structureImage: '/excel_structures/structure_cas_34367-04-9.png',
+    link: '/products/browse/ginsenosides/ginsenoside-ro',
+  },
+  {
+    id: 'pneumocandin-b0',
+    badge: 'Antifungal Standard',
+    name: 'Pneumocandin B0',
+    chemicalName: 'Pneumocandin B0',
+    description: 'A potent antifungal compound used in research and pharmaceutical applications.',
+    catNumber: 'PV-PNE-1355',
+    casNumber: '135575-42-7',
+    molecularWeight: '1065.21 g/mol',
+    molecularFormula: 'C₅₀H₈₀N₈O₁₇',
+    category: 'Echinocandins',
+    formulaSubscript: 'C₅₀H₈₀N₈O₁₇',
+    structureImage: '/excel_structures/structure_cas_135575-42-7.png',
+    link: '/products/browse/echinocandins/pneumocandin-b0',
+  },
+  {
+    id: 'hederacoside-c',
+    badge: 'Reference Standard',
+    name: 'Hederacoside C',
+    chemicalName: 'Hederacoside C',
+    description: 'A bioactive triterpene saponin marker compound for natural product characterization and standardization.',
+    catNumber: 'PV-HED-1421',
+    casNumber: '14216-03-6',
+    molecularWeight: '1221.39 g/mol',
+    molecularFormula: 'C₅₉H₉₆O₂₆',
+    category: 'Triterpenoid Saponins',
+    formulaSubscript: 'C₅₉H₉₆O₂₆',
+    structureImage: '/excel_structures/structure_cas_14216-03-6.png',
+    link: '/products/browse/triterpenoid-saponins/hederacoside-c',
+  },
+  {
+    id: 'fosaprepitant-dimeglumine',
+    badge: 'Pharmaceutical Standard',
+    name: 'Fosaprepitant Dimeglumine',
+    chemicalName: 'Fosaprepitant Dimeglumine',
+    description: 'A water-soluble neurokinin-1 receptor antagonist prodrug reference standard for oncology research.',
+    catNumber: 'PV-FOS-2651',
+    casNumber: '265121-04-8',
+    molecularWeight: '1004.84 g/mol',
+    molecularFormula: 'C₂₃H₂₂F₇N₄O₆P · 2C₇H₁₇NO₅',
+    category: 'Aprepitant',
+    formulaSubscript: 'C₂₃H₂₂F₇N₄O₆P · 2C₇H₁₇NO₅',
+    structureImage: '/excel_structures/structure_cas_265121-04-8.png',
+    link: '/products/browse/aprepitant/fosaprepitant-dimeglumine',
   },
 ];
 
@@ -301,110 +382,190 @@ function SkeletalStructure2D({ type }) {
 }
 
 /**
- * Chemical Card Content Surface (Scientific Spec Split + 2D ChemDraw Stage)
+ * Chemical Card Content Surface (Exact Design matching user mockup)
  */
 function ChemicalCardContent({ slide, added, onAddToCart }) {
+  const [zoom, setZoom] = useState(1);
+
+  // Reset zoom when slide changes
+  useEffect(() => {
+    setZoom(1);
+  }, [slide.id]);
+
+  const handleZoomIn = (e) => {
+    e.stopPropagation();
+    setZoom((z) => Math.min(1.6, +(z + 0.15).toFixed(2)));
+  };
+
+  const handleZoomOut = (e) => {
+    e.stopPropagation();
+    setZoom((z) => Math.max(0.7, +(z - 0.15).toFixed(2)));
+  };
+
+  const handleZoomReset = (e) => {
+    e.stopPropagation();
+    setZoom(1);
+  };
+
+  const mwValue = (slide.molecularWeight || '').replace(/\s*g\/mol/i, '').trim();
+
   return (
-    <>
-      {/* Card Top: Badges, Catalog No, & Compound Name */}
-      <div className="text-left">
-        <div className="flex items-center gap-2 mb-1.5">
-          <span className="inline-block px-3 py-0.5 rounded-full text-[11px] font-semibold bg-[#E2F7F4] text-[#00897B] tracking-wide border border-[#00E5BE]/30 shadow-[0_0_10px_rgba(0,229,190,0.15)]">
+    <div style={{ fontFamily: "'Inter', sans-serif" }} className="w-full h-full flex flex-col justify-between">
+      {/* 1. Top Badges Row: Left Category Badge & Catalog Number, Right Certified Grade */}
+      <div className="flex items-center justify-between gap-2 mb-2 font-sans">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#E6F7F5] text-[#007A6C] border border-[#00A389]/25 shadow-2xs tracking-wide">
+            <IoCheckmarkCircle className="text-[#00897B] text-[15px]" />
             {slide.badge}
           </span>
-          <span className="text-[11.5px] font-mono font-bold text-[#00897B] bg-[#F0FDFB] px-2.5 py-0.5 rounded-md border border-[#00E5BE]/20">
+          <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-50 border border-slate-200/90 text-slate-700 tracking-wide font-sans">
             {slide.catNumber}
           </span>
         </div>
 
-        <h3 className="text-sm sm:text-base font-bold text-[#0E2358] tracking-tight leading-snug line-clamp-2 min-h-[2.4rem] sm:min-h-[2.65rem] flex items-center" title={slide.chemicalName || slide.name}>
-          {slide.name}
-        </h3>
+        <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-[#E8F8F5] text-[#007A6C] border border-[#B2EBE2] shadow-2xs">
+          <IoCheckmarkCircle className="text-[#00897B] text-[15px]" />
+          Certified Grade
+        </span>
       </div>
 
-      {/* Middle Body: Landscape Rectangular Split between Left Specs & Spacious Right Structure */}
-      <div className="grid grid-cols-12 gap-2.5 sm:gap-4 items-stretch h-[225px] sm:h-[235px] my-auto pt-2.5 border-t border-slate-100">
-        {/* Left Specs with Mint Circular Icons (5 of 12 cols = ~40%) */}
-        <div className="col-span-5 flex flex-col justify-around py-1 text-left h-full">
-          {/* CAS No */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-7.5 sm:w-8.5 h-7.5 sm:h-8.5 rounded-full bg-[#E2F7F4] text-[#00897B] flex items-center justify-center flex-shrink-0 shadow-[0_0_8px_rgba(0,163,137,0.15)]">
-              <IoPersonOutline size={14} className="sm:text-[15px]" />
+      {/* 2. Compound Title & Subtitle with Mint Beaker Icon */}
+      <div className="flex items-start gap-3.5 my-1.5 text-left font-sans">
+        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#E6F7F5] border border-[#C6F0E8] text-[#00897B] flex items-center justify-center flex-shrink-0 shadow-2xs mt-0.5">
+          <IoFlaskOutline size={22} className="stroke-[2.2]" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight leading-tight line-clamp-1" title={slide.chemicalName || slide.name}>
+            {slide.name}
+          </h3>
+          <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed mt-1 line-clamp-1">
+            {slide.description}
+          </p>
+          {/* Decorative Mint Accent Line */}
+          <div className="w-12 h-0.75 bg-[#00A389] rounded-full mt-2" />
+        </div>
+      </div>
+
+      {/* 3. Middle Body: Left 3 Spec Cards & Right 2D Structure Canvas */}
+      <div className="grid grid-cols-12 gap-3.5 sm:gap-4 items-stretch my-2 font-sans flex-1">
+        {/* Left Column: 3 Spec Cards */}
+        <div className="col-span-5 flex flex-col justify-between gap-2.5 text-left h-full">
+          {/* CAS NO. */}
+          <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center flex-shrink-0">
+              <IoFlaskOutline size={18} className="stroke-[2.2]" />
             </div>
-            <div className="leading-tight min-w-0">
-              <span className="text-[9.5px] sm:text-[10px] font-mono uppercase text-slate-400 font-semibold block">CAS No.</span>
-              <span className="text-[11.5px] sm:text-[13px] font-bold font-mono text-[#0E2358] truncate block">{slide.casNumber}</span>
+            <div className="leading-tight min-w-0 flex-1">
+              <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">CAS NO.</span>
+              <span className="text-[14px] sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">{slide.casNumber}</span>
             </div>
           </div>
 
-          {/* Molecular Weight */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-7.5 sm:w-8.5 h-7.5 sm:h-8.5 rounded-full bg-[#E2F7F4] text-[#00897B] flex items-center justify-center flex-shrink-0 shadow-[0_0_8px_rgba(0,163,137,0.15)]">
-              <IoGitNetworkOutline size={14} className="sm:text-[15px]" />
+          {/* MOLECULAR WEIGHT */}
+          <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center flex-shrink-0">
+              <IoGitNetworkOutline size={18} className="stroke-[2.2]" />
             </div>
-            <div className="leading-tight min-w-0">
-              <span className="text-[9.5px] sm:text-[10px] font-mono uppercase text-slate-400 font-semibold block">Mol. Weight</span>
-              <span className="text-[11.5px] sm:text-[13px] font-bold font-mono text-[#0E2358] truncate block">{slide.molecularWeight}</span>
+            <div className="leading-tight min-w-0 flex-1">
+              <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Molecular Weight</span>
+              <div className="text-[14px] sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">
+                {mwValue}
+                <span className="text-xs font-medium text-slate-500 ml-1">g/mol</span>
+              </div>
             </div>
           </div>
 
-          {/* Molecular Formula */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-7.5 sm:w-8.5 h-7.5 sm:h-8.5 rounded-full bg-[#E2F7F4] text-[#00897B] flex items-center justify-center flex-shrink-0 shadow-[0_0_8px_rgba(0,163,137,0.15)]">
-              <IoCubeOutline size={14} className="sm:text-[15px]" />
+          {/* MOLECULAR FORMULA */}
+          <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center flex-shrink-0">
+              <IoCubeOutline size={18} className="stroke-[2.2]" />
             </div>
-            <div className="leading-tight min-w-0">
-              <span className="text-[9.5px] sm:text-[10px] font-mono uppercase text-slate-400 font-semibold block">Formula</span>
-              <span className="text-[11.5px] sm:text-[13px] font-bold font-mono text-[#0E2358] truncate block">{slide.molecularFormula}</span>
+            <div className="leading-tight min-w-0 flex-1">
+              <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Molecular Formula</span>
+              <span className="text-[13px] sm:text-[14px] font-extrabold text-[#0F172A] font-sans break-words line-clamp-1 block leading-snug">
+                {slide.molecularFormula}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Right 2D Skeletal Chemical Structure Stage (7 of 12 cols = ~60% - Spacious Rectangle) */}
-        <div className="col-span-7 relative flex flex-col items-center justify-center rounded-[20px] bg-[#FAFDFD] border border-slate-200/90 p-2 sm:p-3 h-full transition-all duration-300 hover:border-slate-300 hover:shadow-xs group/struct">
-          <div className="w-full h-full max-h-[195px] sm:max-h-[205px] flex items-center justify-center p-1.5 transition-transform duration-300 group-hover/struct:scale-[1.01]">
-            {slide.structureImage ? (
-              <img
-                src={slide.structureImage}
-                alt={slide.name}
-                className="w-full h-full object-contain max-h-[185px] sm:max-h-[195px] select-none pointer-events-none drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
-                loading="eager"
-              />
-            ) : (
-              <SkeletalStructure2D type={slide.structureType} />
-            )}
+        {/* Right Column: 2D Chemical Structure Stage with Zoom Controls */}
+        <div className="col-span-7 relative flex flex-col rounded-2xl bg-[#FCFDFD] border border-slate-200/90 shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)] p-3 h-full overflow-hidden">
+          {/* Header Toolbar: Zoom Controls */}
+          <div className="flex items-center justify-end mb-1 relative z-20">
+            {/* Interactive Zoom Control Segment */}
+            <div className="flex items-center gap-1.5 bg-white border border-slate-200/90 rounded-lg px-2 py-0.5 shadow-2xs text-xs font-semibold text-slate-600">
+              <button
+                type="button"
+                onClick={handleZoomOut}
+                disabled={zoom <= 0.7}
+                className="w-5 h-5 flex items-center justify-center text-slate-500 hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                title="Zoom Out"
+              >
+                <IoRemoveOutline size={14} />
+              </button>
+              <button
+                type="button"
+                onClick={handleZoomReset}
+                className="px-1 text-[11px] font-bold text-slate-700 hover:text-[#00897B] cursor-pointer"
+                title="Reset Zoom (100%)"
+              >
+                {Math.round(zoom * 100)}%
+              </button>
+              <button
+                type="button"
+                onClick={handleZoomIn}
+                disabled={zoom >= 1.6}
+                className="w-5 h-5 flex items-center justify-center text-slate-500 hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                title="Zoom In"
+              >
+                <IoAddOutline size={14} />
+              </button>
+            </div>
           </div>
-          <div className="absolute bottom-2 right-2.5 pointer-events-none">
-            <span className="text-[9.5px] sm:text-[10.5px] font-mono text-slate-500 font-bold tracking-wider bg-white/95 px-1.5 py-0.5 rounded border border-slate-200/80 shadow-2xs">
-              {slide.formulaSubscript}
-            </span>
+
+          {/* Structure Canvas */}
+          <div className="w-full flex-1 flex items-center justify-center p-2 overflow-hidden select-none min-h-[170px]">
+            <div
+              className="w-full h-full flex items-center justify-center transition-transform duration-200 origin-center"
+              style={{ transform: `scale(${zoom})` }}
+            >
+              {slide.structureImage ? (
+                <img
+                  src={slide.structureImage}
+                  alt={slide.name}
+                  className="w-full h-full object-contain max-h-[160px] sm:max-h-[175px] select-none pointer-events-none drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
+                  loading="eager"
+                />
+              ) : (
+                <SkeletalStructure2D type={slide.structureType} />
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Action Footer Bar */}
-      <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-3 relative z-10">
+      {/* 4. Action Footer Bar */}
+      <div className="pt-3 border-t border-slate-100/90 flex items-center justify-between gap-3 relative z-10 font-sans">
         <button
           type="button"
           onClick={onAddToCart}
-          className={`relative overflow-hidden px-5 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm shadow-md flex items-center gap-2 cursor-pointer transition-all active:scale-95 ${
+          className={`relative overflow-hidden px-7 py-3 rounded-full font-bold text-sm shadow-md flex items-center gap-2.5 cursor-pointer transition-all active:scale-95 ${
             added
               ? 'bg-emerald-600 text-white shadow-[0_0_18px_rgba(16,185,129,0.45)]'
-              : 'bg-[#0B3B3C] hover:bg-[#072627] text-white hover:shadow-[0_0_20px_rgba(0,163,137,0.38)]'
+              : 'bg-[#005E54] hover:bg-[#004D45] text-white shadow-[0_4px_16px_rgba(0,94,84,0.3)] hover:shadow-[0_6px_22px_rgba(0,94,84,0.45)]'
           }`}
         >
-          {!added && (
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer-sweep pointer-events-none" />
-          )}
           {added ? (
             <>
-              <IoCheckmarkCircle size={16} />
+              <IoCheckmarkCircle size={18} />
               <span>Added to Cart!</span>
             </>
           ) : (
             <>
-              <IoCartOutline size={16} />
+              <IoCartOutline size={18} />
               <span>Add to Enquiry Cart</span>
+              <IoArrowForward size={16} />
             </>
           )}
         </button>
@@ -413,13 +574,13 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
           href={slide.link || "/products"}
           prefetch={true}
           onMouseEnter={() => prefetchProduct(slide.id)}
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#00897B] hover:text-[#0B3B3C] transition-colors"
+          className="inline-flex items-center gap-2 text-[15px] font-bold text-[#00897B] hover:text-[#005E54] px-4 py-2 rounded-full hover:bg-teal-50/60 transition-all group/link font-sans"
         >
           <span>View Details</span>
-          <IoArrowForward size={14} />
+          <IoArrowForward size={16} className="transition-transform duration-200 group-hover/link:translate-x-1" />
         </Link>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -534,7 +695,8 @@ export default function ChemicalSlideshow() {
 
   return (
     <div
-      className="relative w-full max-w-[640px] xl:max-w-[670px] select-none mx-auto"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+      className="relative w-full max-w-[740px] xl:max-w-[780px] select-none mx-auto font-sans"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -548,7 +710,7 @@ export default function ChemicalSlideshow() {
           This outer frame NEVER moves, resets, or unmounts during transitions.
           The beam continuously rotates around the perimeter with zero interruption.
           ================================================================ */}
-      <div className="moving-glow-card w-full h-[415px] sm:h-[420px] select-none relative shadow-[0_20px_50px_-12px_rgba(15,23,42,0.08)]">
+      <div className="moving-glow-card w-full h-[475px] sm:h-[490px] select-none relative shadow-[0_20px_50px_-12px_rgba(15,23,42,0.08)]">
         {/* 1. Luminous Rotating Glow Beam (Exact same class as Log In / Sign Up button) */}
         <span className="moving-glow-beam" aria-hidden="true" />
 
@@ -600,40 +762,40 @@ export default function ChemicalSlideshow() {
       <button
         type="button"
         onClick={handlePrev}
-        className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-40 w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-slate-700 shadow-[0_4px_16px_rgba(15,23,42,0.12)] border border-slate-200/90 hover:border-slate-300 flex items-center justify-center transition-all duration-300 group active:scale-95 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+        className="absolute -left-4 sm:-left-6 top-1/2 -translate-y-1/2 z-40 w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-[#00897B] shadow-[0_4px_18px_rgba(15,23,42,0.12)] border border-slate-200/90 hover:border-[#00897B]/40 flex items-center justify-center transition-all duration-300 group active:scale-95 cursor-pointer focus:outline-none"
         aria-label="Previous Chemical Product"
         title="Previous product"
       >
         <span className="transition-transform duration-300 group-hover:-translate-x-0.5">
-          <IoChevronBackOutline size={22} />
+          <IoChevronBackOutline size={22} className="stroke-[2.5]" />
         </span>
       </button>
 
       <button
         type="button"
         onClick={handleNext}
-        className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-40 w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-slate-700 shadow-[0_4px_16px_rgba(15,23,42,0.12)] border border-slate-200/90 hover:border-slate-300 flex items-center justify-center transition-all duration-300 group active:scale-95 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+        className="absolute -right-4 sm:-right-6 top-1/2 -translate-y-1/2 z-40 w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-[#00897B] shadow-[0_4px_18px_rgba(15,23,42,0.12)] border border-slate-200/90 hover:border-[#00897B]/40 flex items-center justify-center transition-all duration-300 group active:scale-95 cursor-pointer focus:outline-none"
         aria-label="Next Chemical Product"
         title="Next product"
       >
         <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-          <IoChevronForwardOutline size={22} />
+          <IoChevronForwardOutline size={22} className="stroke-[2.5]" />
         </span>
       </button>
 
       {/* ================================================================
           BOTTOM NAVIGATION INDICATORS (Polished Pill Dots)
           ================================================================ */}
-      <div className="flex items-center justify-center gap-2 mt-4">
+      <div className="flex items-center justify-center gap-1.5 mt-5">
         {CHEMICAL_SLIDES.map((c, idx) => (
           <button
             key={c.id}
             type="button"
             onClick={() => handleDotClick(idx)}
-            className={`h-1.5 transition-all duration-300 cursor-pointer rounded-full ${
+            className={`h-2 transition-all duration-300 cursor-pointer rounded-full ${
               currentIdx === idx
                 ? 'w-7 bg-[#00897B] shadow-[0_0_10px_rgba(0,163,137,0.5)]'
-                : 'w-4 bg-slate-300 hover:bg-slate-400'
+                : 'w-2 bg-slate-300 hover:bg-slate-400'
             }`}
             aria-label={`Jump to ${c.name}`}
           />
