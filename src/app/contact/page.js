@@ -20,6 +20,7 @@ import {
   IoCheckmark,
   IoChevronDownOutline,
 } from 'react-icons/io5';
+import { FaLinkedinIn } from 'react-icons/fa6';
 import { useScrollReveal } from '@/utils/useScrollReveal';
 
 const FAQS = [
@@ -480,13 +481,10 @@ export default function ContactPage() {
             
             {/* Quick Contact Desks */}
             <div className="scroll-reveal delay-100 card-hover-scientific rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl shadow-slate-200/40 space-y-5">
-              <div className="flex items-center justify-between">
+              <div>
                 <h3 className="text-base font-bold text-slate-900">
-                  Direct Communication Desks
+                  Contact
                 </h3>
-                <span className="text-[11px] font-semibold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">
-                  Mon – Sat (IST)
-                </span>
               </div>
 
               <div className="space-y-3.5 text-xs">
@@ -552,6 +550,26 @@ export default function ContactPage() {
                     </span>
                   </div>
                   <span className="text-emerald-700 font-bold text-sm group-hover:translate-x-0.5 transition-transform pr-1">
+                    →
+                  </span>
+                </a>
+
+                {/* LinkedIn Channel */}
+                <a
+                  href="https://www.linkedin.com/in/pharmavive-971185371"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-sky-50/70 border border-sky-100 hover:border-sky-300 hover:bg-sky-50 transition-all cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-[#0A66C2] text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                      <FaLinkedinIn size={18} />
+                    </div>
+                    <span className="font-bold text-slate-900 group-hover:text-[#0A66C2] text-xs sm:text-[13px] block transition-colors">
+                      Connect on LinkedIn
+                    </span>
+                  </div>
+                  <span className="text-[#0A66C2] font-bold text-sm group-hover:translate-x-0.5 transition-transform pr-1">
                     →
                   </span>
                 </a>

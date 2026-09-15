@@ -1265,8 +1265,8 @@ select:focus-visible {
 .chemical-ticker-track {
   display: flex;
   width: max-content;
-  gap: 1.25rem;
-  animation: chemicalTicker 48s linear infinite;
+  gap: 1.75rem;
+  animation: chemicalTicker 80s linear infinite;
   will-change: transform;
 }
 

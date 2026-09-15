@@ -262,16 +262,86 @@ function FormattedMessageText({ text }) {
   );
 }
 
+// Gentle dual-tone scientific notification chime
+function playNotificationSound() {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+      const ctx = new AudioContext();
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+      const now = ctx.currentTime;
+
+      // Tone 1: G#5 (830.61 Hz)
+      const osc1 = ctx.createOscillator();
+      const gain1 = ctx.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(830.61, now);
+      gain1.gain.setValueAtTime(0, now);
+      gain1.gain.linearRampToValueAtTime(0.2, now + 0.02);
+      gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+      osc1.connect(gain1);
+      gain1.connect(ctx.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.5);
+
+      // Tone 2: D#6 (1244.5 Hz)
+      const osc2 = ctx.createOscillator();
+      const gain2 = ctx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(1244.5, now + 0.09);
+      gain2.gain.setValueAtTime(0, now + 0.09);
+      gain2.gain.linearRampToValueAtTime(0.25, now + 0.11);
+      gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.65);
+      osc2.connect(gain2);
+      gain2.connect(ctx.destination);
+      osc2.start(now + 0.09);
+      osc2.stop(now + 0.65);
+      return;
+    }
+  } catch (e) {
+    // Fallback to HTML5 audio element
+  }
+
+  try {
+    const audio = new Audio('/notification.wav');
+    audio.volume = 0.35;
+    audio.play().catch(() => {});
+  } catch (e) {}
+}
+
 export default function FroxyAssistant() {
   const { addToCart, isInCart } = useEnquiryCart();
   const [isOpen, setIsOpen] = useState(false);
-  const [showNotificationBadge, setShowNotificationBadge] = useState(true);
+  const [showNotificationBadge, setShowNotificationBadge] = useState(false);
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
   const [inputVal, setInputVal] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [cartSuccessToast, setCartSuccessToast] = useState(null);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Proactive notification: pops up after 10 seconds with sound, then auto-dismisses after 50 seconds
+  useEffect(() => {
+    // 1. Pop up after 10 seconds and play audio chime
+    const showTimer = setTimeout(() => {
+      setShowNotificationBadge(true);
+      playNotificationSound();
+    }, 10000);
+
+    // 2. Auto-dismiss after 50 seconds of being shown (60 seconds total)
+    const hideTimer = setTimeout(() => {
+      setShowNotificationBadge(false);
+    }, 60000);
+
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []);
 
   // External triggers (e.g. from Hero or header links)
   useEffect(() => {

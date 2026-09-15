@@ -17,9 +17,6 @@ import {
 } from 'react-icons/io5';
 import {
   FaLinkedinIn,
-  FaXTwitter,
-  FaDiscord,
-  FaYoutube,
 } from 'react-icons/fa6';
 
 export default function Footer() {
@@ -298,6 +295,23 @@ export default function Footer() {
                       </a>
                     </div>
                   </div>
+
+                  {/* LinkedIn */}
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-[#063B34] border border-[#1FA99A]/60 flex items-center justify-center text-[#2DF4D7] shrink-0">
+                      <FaLinkedinIn size={11} />
+                    </div>
+                    <div>
+                      <a
+                        href="https://www.linkedin.com/in/pharmavive-971185371"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-[11px] font-bold text-white hover:text-[#2DF4D7] transition-colors leading-tight"
+                      >
+                        LinkedIn
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Signature Script Callout: "Bringing Science to Life" */}
@@ -374,46 +388,6 @@ export default function Footer() {
             <span>© 2025 Pharmavive. All rights reserved.</span>
             <span className="hidden sm:inline text-emerald-600">|</span>
             <span className="text-[#2DF4D7] font-semibold">Bringing Science to Life</span>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-2.5 text-emerald-200/80">
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="w-6 h-6 rounded-full bg-[#063B34] border border-[#14796E]/60 flex items-center justify-center hover:text-[#2DF4D7] hover:border-[#2DF4D7] hover:bg-[#0A574E] transition-colors"
-            >
-              <FaLinkedinIn size={11} />
-            </a>
-            <a
-              href="https://x.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X (Twitter)"
-              className="w-6 h-6 rounded-full bg-[#063B34] border border-[#14796E]/60 flex items-center justify-center hover:text-[#2DF4D7] hover:border-[#2DF4D7] hover:bg-[#0A574E] transition-colors"
-            >
-              <FaXTwitter size={11} />
-            </a>
-            <a
-              href="https://discord.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Discord"
-              className="w-6 h-6 rounded-full bg-[#063B34] border border-[#14796E]/60 flex items-center justify-center hover:text-[#2DF4D7] hover:border-[#2DF4D7] hover:bg-[#0A574E] transition-colors"
-            >
-              <FaDiscord size={11} />
-            </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-              className="w-6 h-6 rounded-full bg-[#063B34] border border-[#14796E]/60 flex items-center justify-center hover:text-[#2DF4D7] hover:border-[#2DF4D7] hover:bg-[#0A574E] transition-colors"
-            >
-              <FaYoutube size={11} />
-            </a>
           </div>
         </div>
       </div>
