@@ -17,6 +17,9 @@ import {
   IoMailOutline,
   IoShieldCheckmarkOutline,
   IoArrowForward,
+  IoHomeOutline,
+  IoInformationCircleOutline,
+  IoGitNetworkOutline,
 } from 'react-icons/io5';
 import MovingGlowButton from '@/Components/UI/MovingGlowButton';
 
@@ -84,22 +87,22 @@ export default function Navbar() {
     <>
       {/* Main Sticky Header with smooth scroll-elevation transition */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
+        className={`sticky top-0 z-40 transition-all duration-300 w-full ${
           isScrolled
             ? 'bg-white/98 backdrop-blur-md border-b border-[#CBD5E1] shadow-md'
             : 'bg-white/95 backdrop-blur-md border-b border-[#E2E8F0] shadow-2xs'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 gap-2 lg:gap-3 xl:gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex items-center justify-between h-20 gap-2 lg:gap-3 xl:gap-4 w-full">
             {/* Logo: Preserves natural ~3.13:1 aspect ratio with no duplicate plain text */}
             <Link href="/" className="flex items-center group flex-shrink-0" onClick={closeMobile} aria-label="Pharmavive Home">
-              <div className="relative h-12 sm:h-14 lg:h-[58px] xl:h-16 w-44 sm:w-52 lg:w-56 xl:w-60 flex-shrink-0">
+              <div className="relative h-10 sm:h-14 lg:h-[58px] xl:h-16 w-36 sm:w-48 lg:w-56 xl:w-60 flex-shrink-0">
                 <Image
                   src="/logo.png"
                   alt="Pharmavive - Bringing Science To Life"
                   fill
-                  sizes="(max-width: 640px) 176px, (max-width: 1024px) 208px, 240px"
+                  sizes="(max-width: 640px) 144px, (max-width: 1024px) 208px, 240px"
                   className="object-contain object-left"
                   priority
                 />
@@ -215,7 +218,7 @@ export default function Navbar() {
             </div>
 
             {/* Right Action Suite: Search, Profile, Cart Badge & Log In / Sign Up CTA */}
-            <div className="flex items-center gap-1 sm:gap-1.5 xl:gap-2.5 shrink-0">
+            <div className="flex items-center gap-1 sm:gap-2 shrink-0">
               {/* Search Trigger (Mobile only) */}
               <Link
                 href="/search"
@@ -255,46 +258,48 @@ export default function Navbar() {
                 </span>
               </button>
 
-              {/* Auth Status / Log In / Sign Up Pill Button with Moving Glow Line */}
-              {session?.user ? (
-                <div className="hidden sm:flex items-center gap-2 ml-1">
-                  <Link
-                    href="/profile"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#0f3d3a] border border-emerald-200 text-xs font-semibold transition-colors"
-                    title={`View Researcher Profile (${session.user.email})`}
+              {/* Desktop Auth Status / Log In / Sign Up Button */}
+              <div className="hidden lg:flex items-center gap-2 ml-1">
+                {session?.user ? (
+                  <>
+                    <Link
+                      href="/profile"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#0f3d3a] border border-emerald-200 text-xs font-semibold transition-colors"
+                      title={`View Researcher Profile (${session.user.email})`}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="max-w-[120px] truncate">{session.user.name || session.user.email}</span>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => signOut({ callbackUrl: '/' })}
+                      className="text-xs text-slate-500 hover:text-red-600 font-medium px-2 py-1 transition-colors cursor-pointer"
+                      title="Sign Out"
+                    >
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <MovingGlowButton
+                    href="/admin/signin"
+                    prefetch={true}
+                    variant="teal"
+                    innerClassName="!px-3 xl:!px-5 !py-2 !text-xs xl:!text-sm font-semibold whitespace-nowrap"
                   >
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="max-w-[120px] truncate">{session.user.name || session.user.email}</span>
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => signOut({ callbackUrl: '/' })}
-                    className="text-xs text-slate-500 hover:text-red-600 font-medium px-2 py-1 transition-colors cursor-pointer"
-                    title="Sign Out"
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              ) : (
-                <MovingGlowButton
-                  href="/admin/signin"
-                  prefetch={true}
-                  variant="teal"
-                  className="hidden sm:inline-flex ml-0.5"
-                  innerClassName="!px-3 xl:!px-5 !py-2 !text-xs xl:!text-sm font-semibold whitespace-nowrap"
-                >
-                  Log In / Sign Up
-                </MovingGlowButton>
-              )}
+                    Log In / Sign Up
+                  </MovingGlowButton>
+                )}
+              </div>
 
               {/* Mobile Hamburger Menu Toggle */}
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-xl text-[#0E2358] hover:bg-slate-100 transition-colors"
+                className="lg:hidden flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100/90 hover:bg-[#00A389]/10 text-[#0E2358] hover:text-[#00A389] border border-slate-200/80 transition-colors shrink-0 cursor-pointer"
                 aria-label="Toggle navigation menu"
+                aria-expanded={isMobileMenuOpen}
               >
-                {isMobileMenuOpen ? <IoCloseOutline size={26} /> : <IoMenuOutline size={26} />}
+                {isMobileMenuOpen ? <IoCloseOutline size={22} /> : <IoMenuOutline size={22} />}
               </button>
             </div>
           </div>
@@ -302,7 +307,51 @@ export default function Navbar() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-[#E2E8F0] bg-white px-4 py-6 space-y-4 max-h-[80vh] overflow-y-auto shadow-xl">
+          <div className="lg:hidden border-t border-[#E2E8F0] bg-white px-4 py-5 space-y-4 max-h-[85vh] overflow-y-auto shadow-xl">
+            {/* Top Auth Banner: Log In / Sign Up or Researcher Status */}
+            {session?.user ? (
+              <div className="p-3.5 rounded-2xl bg-emerald-50/90 border border-emerald-200 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-[#0f3d3a] truncate">{session.user.name || 'Researcher'}</p>
+                    <p className="text-[11px] text-slate-500 truncate">{session.user.email}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <Link
+                    href="/profile"
+                    onClick={closeMobile}
+                    className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-medium hover:bg-emerald-700 transition-colors"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => { closeMobile(); signOut({ callbackUrl: '/' }); }}
+                    className="px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-red-600 text-xs font-medium transition-colors cursor-pointer"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="p-3.5 rounded-2xl bg-gradient-to-r from-teal-50 via-emerald-50 to-slate-50 border border-[#00A389]/25 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-[#0E2358]">Researcher Portal</p>
+                  <p className="text-[11px] text-slate-500">Sign in to track orders &amp; quotes</p>
+                </div>
+                <Link
+                  href="/admin/signin"
+                  onClick={closeMobile}
+                  className="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#00A389] hover:bg-[#078F83] text-white text-xs font-semibold shadow-sm transition-all active:scale-95"
+                >
+                  <span>Log In / Sign Up</span>
+                  <IoArrowForward size={14} />
+                </Link>
+              </div>
+            )}
+
             {/* Mobile Search Input */}
             <form onSubmit={handleSearchSubmit} className="relative">
               <input
@@ -318,71 +367,97 @@ export default function Navbar() {
               <IoSearchOutline className="absolute left-3 top-3 text-[#00A389]" size={18} />
             </form>
 
-            <div className="py-2 space-y-1">
+            {/* Navigation Links: Home & other pages */}
+            <div className="py-1 space-y-1">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 px-3 pb-1">
+                Navigation
+              </div>
               <Link
                 href="/"
                 prefetch={true}
                 onClick={closeMobile}
-                className={`block px-3 py-2.5 text-sm rounded-xl transition-colors ${
+                className={`flex items-center justify-between px-3.5 py-2.5 text-sm rounded-xl transition-colors ${
                   pathname === '/'
                     ? 'text-[#00A389] bg-[#EBF7F6] font-semibold'
                     : 'text-[#0E2358] hover:bg-[#EBF7F6] font-medium'
                 }`}
               >
-                Home
+                <div className="flex items-center gap-2.5">
+                  <IoHomeOutline size={18} className={pathname === '/' ? 'text-[#00A389]' : 'text-slate-400'} />
+                  <span>Home</span>
+                </div>
+                {pathname === '/' && <span className="w-1.5 h-1.5 rounded-full bg-[#00A389]" />}
               </Link>
               <Link
                 href="/about"
                 prefetch={true}
                 onClick={closeMobile}
-                className={`block px-3 py-2.5 text-sm rounded-xl transition-colors ${
+                className={`flex items-center justify-between px-3.5 py-2.5 text-sm rounded-xl transition-colors ${
                   pathname === '/about'
                     ? 'text-[#00A389] bg-[#EBF7F6] font-semibold'
                     : 'text-[#0E2358] hover:bg-[#EBF7F6] font-medium'
                 }`}
               >
-                About Us
+                <div className="flex items-center gap-2.5">
+                  <IoInformationCircleOutline size={18} className={pathname === '/about' ? 'text-[#00A389]' : 'text-slate-400'} />
+                  <span>About Us</span>
+                </div>
+                {pathname === '/about' && <span className="w-1.5 h-1.5 rounded-full bg-[#00A389]" />}
               </Link>
               <Link
                 href="/products"
                 prefetch={true}
                 onClick={closeMobile}
-                className={`block px-3 py-2.5 text-sm rounded-xl transition-colors ${
+                className={`flex items-center justify-between px-3.5 py-2.5 text-sm rounded-xl transition-colors ${
                   pathname?.startsWith('/products')
                     ? 'text-[#00A389] bg-[#EBF7F6] font-semibold'
                     : 'text-[#0E2358] hover:bg-[#EBF7F6] font-medium'
                 }`}
               >
-                Products
+                <div className="flex items-center gap-2.5">
+                  <IoFlaskOutline size={18} className={pathname?.startsWith('/products') ? 'text-[#00A389]' : 'text-slate-400'} />
+                  <span>Products</span>
+                </div>
+                {pathname?.startsWith('/products') && <span className="w-1.5 h-1.5 rounded-full bg-[#00A389]" />}
               </Link>
               <Link
                 href="/services"
                 prefetch={true}
                 onClick={closeMobile}
-                className={`block px-3 py-2.5 text-sm rounded-xl transition-colors ${
+                className={`flex items-center justify-between px-3.5 py-2.5 text-sm rounded-xl transition-colors ${
                   pathname?.startsWith('/services') || pathname === '/synthesis' || pathname === '/analytical'
                     ? 'text-[#00A389] bg-[#EBF7F6] font-semibold'
                     : 'text-[#0E2358] hover:bg-[#EBF7F6] font-medium'
                 }`}
               >
-                Services
+                <div className="flex items-center gap-2.5">
+                  <IoGitNetworkOutline size={18} className={pathname?.startsWith('/services') || pathname === '/synthesis' || pathname === '/analytical' ? 'text-[#00A389]' : 'text-slate-400'} />
+                  <span>Services</span>
+                </div>
+                {(pathname?.startsWith('/services') || pathname === '/synthesis' || pathname === '/analytical') && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A389]" />
+                )}
               </Link>
               <Link
                 href="/contact"
                 prefetch={true}
                 onClick={closeMobile}
-                className={`block px-3 py-2.5 text-sm rounded-xl transition-colors ${
+                className={`flex items-center justify-between px-3.5 py-2.5 text-sm rounded-xl transition-colors ${
                   pathname === '/contact'
                     ? 'text-[#00A389] bg-[#EBF7F6] font-semibold'
                     : 'text-[#0E2358] hover:bg-[#EBF7F6] font-medium'
                 }`}
               >
-                Contact Us
+                <div className="flex items-center gap-2.5">
+                  <IoCallOutline size={18} className={pathname === '/contact' ? 'text-[#00A389]' : 'text-slate-400'} />
+                  <span>Contact Us</span>
+                </div>
+                {pathname === '/contact' && <span className="w-1.5 h-1.5 rounded-full bg-[#00A389]" />}
               </Link>
             </div>
 
-            {/* Institutional Contact & Admin Footer inside Mobile Drawer */}
-            <div className="pt-4 border-t border-[#E2E8F0] space-y-2">
+            {/* Institutional Contact & Direct Support */}
+            <div className="pt-3 border-t border-[#E2E8F0] space-y-2">
               <p className="text-[10.5px] font-mono uppercase tracking-wider text-[#94A3B8]">
                 Direct Inquiries &amp; Support
               </p>
@@ -401,39 +476,6 @@ export default function Navbar() {
                   <IoMailOutline className="text-[#08A698]" size={15} />
                   <span>info@pharmavive.com</span>
                 </a>
-                <div className="pt-2 flex items-center justify-between border-t border-[#F1F5F9]">
-                  {session?.user ? (
-                    <div className="flex items-center justify-between w-full">
-                      <Link
-                        href="/profile"
-                        onClick={closeMobile}
-                        className="text-[11px] font-medium text-emerald-700 hover:text-emerald-900 truncate max-w-[180px] flex items-center gap-1"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span>{session.user.name || session.user.email}</span>
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => { closeMobile(); signOut({ callbackUrl: '/' }); }}
-                        className="text-[11px] font-semibold text-red-600 hover:underline"
-                      >
-                        Sign Out
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      <span className="text-[10px] text-[#94A3B8]">Global Cold-Chain Logistics</span>
-                      <MovingGlowButton
-                        href="/admin/signin"
-                        onClick={closeMobile}
-                        variant="teal"
-                        innerClassName="px-3.5 py-1.5 text-xs font-semibold"
-                      >
-                        Portal / Sign In →
-                      </MovingGlowButton>
-                    </>
-                  )}
-                </div>
               </div>
             </div>
           </div>

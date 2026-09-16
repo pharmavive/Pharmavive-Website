@@ -8,7 +8,7 @@ import HeroMoleculesAnimation from './HeroMoleculesAnimation';
 
 export default function HomeHero() {
   return (
-    <section className="relative overflow-hidden bg-white text-[#0E2358] pt-12 pb-16 lg:pt-16 lg:pb-22 border-b border-[#E2E8F0]">
+    <section className="relative overflow-hidden w-full bg-white text-[#0E2358] pt-12 pb-16 lg:pt-16 lg:pb-22 border-b border-[#E2E8F0]">
       {/* Top-Left Organic Teal Decorative Corner matching reference mockup */}
       <div className="absolute top-0 left-0 w-44 h-44 sm:w-56 sm:h-56 pointer-events-none overflow-hidden z-0">
         <div className="absolute -top-24 -left-24 w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-[#E0F7F2]/60" />
@@ -23,8 +23,8 @@ export default function HomeHero() {
       {/* Floating 3D Molecules Animation Layer & Ambient Lattice */}
       <HeroMoleculesAnimation />
 
-      <div className="relative z-10 max-w-7xl xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center min-h-[480px] lg:min-h-[520px]">
+      <div className="relative z-10 max-w-7xl xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 w-full overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center min-h-[480px] lg:min-h-[520px] w-full min-w-0">
           {/* LEFT COLUMN: Value Proposition & Editorial Actions (5 cols) */}
           <div className="lg:col-span-5 space-y-4 sm:space-y-5 text-left">
             {/* Scientific Eyebrow List & Dual Pill Accent */}
@@ -161,7 +161,7 @@ export default function HomeHero() {
           </div>
 
           {/* RIGHT COLUMN: 3D Chemical Slideshow Showcase (7 cols) */}
-          <div className="lg:col-span-7 relative w-full flex justify-center items-center">
+          <div className="lg:col-span-7 relative w-full min-w-0 flex justify-center items-center overflow-hidden">
             <ChemicalSlideshow />
           </div>
         </div>

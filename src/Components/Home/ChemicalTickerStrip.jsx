@@ -174,7 +174,7 @@ export default function ChemicalTickerStrip() {
   const marqueeItems = [...TICKER_COMPOUNDS, ...TICKER_COMPOUNDS];
 
   return (
-    <section className="relative w-full bg-slate-50/80 border-y border-slate-200/90 pt-8 sm:pt-10 pb-10 sm:pb-12 select-none">
+    <section className="relative w-full overflow-hidden bg-slate-50/80 border-y border-slate-200/90 pt-8 sm:pt-10 pb-10 sm:pb-12 select-none">
       {/* Section Header / Title */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">

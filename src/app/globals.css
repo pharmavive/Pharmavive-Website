@@ -1067,6 +1067,12 @@ select:focus-visible {
   transform: scale(0.98);
 }
 
+.moving-glow-btn.hidden,
+.hidden.moving-glow-btn,
+.hidden > .moving-glow-btn {
+  display: none !important;
+}
+
 .moving-glow-beam {
   position: absolute;
   top: 50%;

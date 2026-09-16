@@ -412,7 +412,7 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
   return (
     <div style={{ fontFamily: "'Inter', sans-serif" }} className="w-full h-full flex flex-col justify-between">
       {/* 1. Top Badges Row: Left Category Badge & Catalog Number, Right Certified Grade */}
-      <div className="flex items-center justify-between gap-2 mb-2 font-sans">
+      <div className="flex items-center justify-between gap-2 mb-2 font-sans flex-wrap">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#E6F7F5] text-[#007A6C] border border-[#00A389]/25 shadow-2xs tracking-wide">
             <IoCheckmarkCircle className="text-[#00897B] text-[15px]" />
@@ -446,51 +446,51 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
         </div>
       </div>
 
-      {/* 3. Middle Body: Left 3 Spec Cards & Right 2D Structure Canvas */}
-      <div className="grid grid-cols-12 gap-3.5 sm:gap-4 items-stretch my-2 font-sans flex-1">
-        {/* Left Column: 3 Spec Cards */}
-        <div className="col-span-5 flex flex-col justify-between gap-2.5 text-left h-full">
+      {/* 3. Middle Body: Spec Cards & 2D Structure Canvas */}
+      <div className="flex flex-col sm:grid sm:grid-cols-12 gap-2.5 sm:gap-4 items-stretch my-1.5 sm:my-2 font-sans flex-1 min-w-0">
+        {/* Spec Cards Column: On mobile, horizontal 3-column pill row; on desktop, vertical 3 spec cards */}
+        <div className="order-2 sm:order-1 sm:col-span-5 flex flex-row sm:flex-col justify-between gap-1.5 sm:gap-2.5 text-left min-w-0">
           {/* CAS NO. */}
-          <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs">
-            <div className="w-10 h-10 rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center flex-shrink-0">
-              <IoFlaskOutline size={18} className="stroke-[2.2]" />
+          <div className="flex-1 sm:flex-initial flex items-center gap-1.5 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
+              <IoFlaskOutline size={15} className="sm:text-[18px] stroke-[2.2]" />
             </div>
             <div className="leading-tight min-w-0 flex-1">
-              <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">CAS NO.</span>
-              <span className="text-[14px] sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">{slide.casNumber}</span>
+              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">CAS NO.</span>
+              <span className="text-[11px] sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">{slide.casNumber}</span>
             </div>
           </div>
 
           {/* MOLECULAR WEIGHT */}
-          <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs">
-            <div className="w-10 h-10 rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center flex-shrink-0">
-              <IoGitNetworkOutline size={18} className="stroke-[2.2]" />
+          <div className="flex-1 sm:flex-initial flex items-center gap-1.5 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
+              <IoGitNetworkOutline size={15} className="sm:text-[18px] stroke-[2.2]" />
             </div>
             <div className="leading-tight min-w-0 flex-1">
-              <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Molecular Weight</span>
-              <div className="text-[14px] sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">
+              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Mol. Weight</span>
+              <div className="text-[11px] sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">
                 {mwValue}
-                <span className="text-xs font-medium text-slate-500 ml-1">g/mol</span>
+                <span className="text-[9px] sm:text-xs font-medium text-slate-500 ml-0.5 sm:ml-1">g/mol</span>
               </div>
             </div>
           </div>
 
           {/* MOLECULAR FORMULA */}
-          <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs">
-            <div className="w-10 h-10 rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center flex-shrink-0">
-              <IoCubeOutline size={18} className="stroke-[2.2]" />
+          <div className="flex-1 sm:flex-initial flex items-center gap-1.5 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
+              <IoCubeOutline size={15} className="sm:text-[18px] stroke-[2.2]" />
             </div>
             <div className="leading-tight min-w-0 flex-1">
-              <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Molecular Formula</span>
-              <span className="text-[13px] sm:text-[14px] font-extrabold text-[#0F172A] font-sans break-words line-clamp-1 block leading-snug">
+              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Formula</span>
+              <span className="text-[11px] sm:text-[14px] font-extrabold text-[#0F172A] font-sans break-words line-clamp-1 block leading-snug">
                 {slide.molecularFormula}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: 2D Chemical Structure Stage with Zoom Controls */}
-        <div className="col-span-7 relative flex flex-col rounded-2xl bg-[#FCFDFD] border border-slate-200/90 shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)] p-3 h-full overflow-hidden">
+        {/* 2D Chemical Structure Stage with Zoom Controls */}
+        <div className="order-1 sm:order-2 sm:col-span-7 relative flex flex-col rounded-2xl bg-[#FCFDFD] border border-slate-200/90 shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)] p-2.5 sm:p-3 h-[180px] sm:h-full overflow-hidden min-w-0">
           {/* Header Toolbar: Zoom Controls */}
           <div className="flex items-center justify-end mb-1 relative z-20">
             {/* Interactive Zoom Control Segment */}
@@ -525,7 +525,7 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
           </div>
 
           {/* Structure Canvas */}
-          <div className="w-full flex-1 flex items-center justify-center p-2 overflow-hidden select-none min-h-[170px]">
+          <div className="w-full flex-1 flex items-center justify-center p-1 sm:p-2 overflow-hidden select-none min-h-[120px] sm:min-h-[170px]">
             <div
               className="w-full h-full flex items-center justify-center transition-transform duration-200 origin-center"
               style={{ transform: `scale(${zoom})` }}
@@ -534,7 +534,7 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
                 <img
                   src={slide.structureImage}
                   alt={slide.name}
-                  className="w-full h-full object-contain max-h-[160px] sm:max-h-[175px] select-none pointer-events-none drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
+                  className="w-full h-full object-contain max-h-[125px] sm:max-h-[175px] select-none pointer-events-none drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
                   loading="eager"
                 />
               ) : (
@@ -710,7 +710,7 @@ export default function ChemicalSlideshow() {
           This outer frame NEVER moves, resets, or unmounts during transitions.
           The beam continuously rotates around the perimeter with zero interruption.
           ================================================================ */}
-      <div className="moving-glow-card w-full h-[475px] sm:h-[490px] select-none relative shadow-[0_20px_50px_-12px_rgba(15,23,42,0.08)]">
+      <div className="moving-glow-card w-full h-[495px] sm:h-[490px] select-none relative shadow-[0_20px_50px_-12px_rgba(15,23,42,0.08)] overflow-hidden">
         {/* 1. Luminous Rotating Glow Beam (Exact same class as Log In / Sign Up button) */}
         <span className="moving-glow-beam" aria-hidden="true" />
 

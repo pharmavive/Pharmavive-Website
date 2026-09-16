@@ -34,7 +34,7 @@ export default function RootLayout({
         <NextAuthSessionProvider>
           <EnquiryCartProvider>
             <NavbarWrapper />
-            <main className="flex-1">
+            <main className="flex-1 w-full overflow-x-hidden min-w-0">
               {children}
             </main>
             <EnquiryCartDrawer />

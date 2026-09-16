@@ -157,7 +157,7 @@ export default function CategoryGridSection() {
         </div>
 
         {/* Outer White Card Container matching user mockup */}
-        <div className="bg-white rounded-[28px] sm:rounded-[36px] lg:rounded-[40px] p-4 sm:p-6 lg:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-slate-200/70 relative">
+        <div className="bg-white rounded-[28px] sm:rounded-[36px] lg:rounded-[40px] p-4 sm:p-6 lg:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-slate-200/70 relative overflow-hidden">
           
           {/* Row 1: 6 Hexagonal Cards with Molecular Connector Ribbon */}
           <div className="relative mb-5">
