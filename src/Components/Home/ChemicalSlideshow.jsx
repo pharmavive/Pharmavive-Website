@@ -412,102 +412,61 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
   return (
     <div style={{ fontFamily: "'Inter', sans-serif" }} className="w-full h-full flex flex-col justify-between">
       {/* 1. Top Badges Row: Left Category Badge & Catalog Number, Right Certified Grade */}
-      <div className="flex items-center justify-between gap-2 mb-2 font-sans flex-wrap">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#E6F7F5] text-[#007A6C] border border-[#00A389]/25 shadow-2xs tracking-wide">
-            <IoCheckmarkCircle className="text-[#00897B] text-[15px]" />
+      <div className="flex items-center justify-between gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 font-sans flex-wrap">
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold bg-[#E6F7F5] text-[#007A6C] border border-[#00A389]/25 shadow-2xs tracking-wide">
+            <IoCheckmarkCircle className="text-[#00897B] text-[13px] sm:text-[15px]" />
             {slide.badge}
           </span>
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-50 border border-slate-200/90 text-slate-700 tracking-wide font-sans">
+          <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold bg-slate-50 border border-slate-200/90 text-slate-700 tracking-wide font-sans">
             {slide.catNumber}
           </span>
         </div>
 
-        <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-[#E8F8F5] text-[#007A6C] border border-[#B2EBE2] shadow-2xs">
-          <IoCheckmarkCircle className="text-[#00897B] text-[15px]" />
+        <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold bg-[#E8F8F5] text-[#007A6C] border border-[#B2EBE2] shadow-2xs">
+          <IoCheckmarkCircle className="text-[#00897B] text-[13px] sm:text-[15px]" />
           Certified Grade
         </span>
       </div>
 
       {/* 2. Compound Title & Subtitle with Mint Beaker Icon */}
-      <div className="flex items-start gap-3.5 my-1.5 text-left font-sans">
-        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#E6F7F5] border border-[#C6F0E8] text-[#00897B] flex items-center justify-center flex-shrink-0 shadow-2xs mt-0.5">
-          <IoFlaskOutline size={22} className="stroke-[2.2]" />
+      <div className="flex items-start gap-2.5 sm:gap-3.5 my-1 sm:my-1.5 text-left font-sans">
+        <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#E6F7F5] border border-[#C6F0E8] text-[#00897B] flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
+          <IoFlaskOutline size={19} className="sm:text-[22px] stroke-[2.2]" />
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight leading-tight line-clamp-1" title={slide.chemicalName || slide.name}>
+          <h3 className="text-base sm:text-2xl font-bold text-[#0F172A] tracking-tight leading-snug line-clamp-2" title={slide.chemicalName || slide.name}>
             {slide.name}
           </h3>
-          <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed mt-1 line-clamp-1">
+          <p className="text-[11px] sm:text-[13px] text-slate-500 font-normal leading-relaxed mt-0.5 line-clamp-2">
             {slide.description}
           </p>
           {/* Decorative Mint Accent Line */}
-          <div className="w-12 h-0.75 bg-[#00A389] rounded-full mt-2" />
+          <div className="w-10 sm:w-12 h-0.75 bg-[#00A389] rounded-full mt-1.5" />
         </div>
       </div>
 
       {/* 3. Middle Body: Spec Cards & 2D Structure Canvas */}
-      <div className="flex flex-col sm:grid sm:grid-cols-12 gap-2.5 sm:gap-4 items-stretch my-1.5 sm:my-2 font-sans flex-1 min-w-0">
-        {/* Spec Cards Column: On mobile, horizontal 3-column pill row; on desktop, vertical 3 spec cards */}
-        <div className="order-2 sm:order-1 sm:col-span-5 flex flex-row sm:flex-col justify-between gap-1.5 sm:gap-2.5 text-left min-w-0">
-          {/* CAS NO. */}
-          <div className="flex-1 sm:flex-initial flex items-center gap-1.5 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
-            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
-              <IoFlaskOutline size={15} className="sm:text-[18px] stroke-[2.2]" />
-            </div>
-            <div className="leading-tight min-w-0 flex-1">
-              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">CAS NO.</span>
-              <span className="text-[11px] sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">{slide.casNumber}</span>
-            </div>
-          </div>
-
-          {/* MOLECULAR WEIGHT */}
-          <div className="flex-1 sm:flex-initial flex items-center gap-1.5 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
-            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
-              <IoGitNetworkOutline size={15} className="sm:text-[18px] stroke-[2.2]" />
-            </div>
-            <div className="leading-tight min-w-0 flex-1">
-              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Mol. Weight</span>
-              <div className="text-[11px] sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">
-                {mwValue}
-                <span className="text-[9px] sm:text-xs font-medium text-slate-500 ml-0.5 sm:ml-1">g/mol</span>
-              </div>
-            </div>
-          </div>
-
-          {/* MOLECULAR FORMULA */}
-          <div className="flex-1 sm:flex-initial flex items-center gap-1.5 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
-            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
-              <IoCubeOutline size={15} className="sm:text-[18px] stroke-[2.2]" />
-            </div>
-            <div className="leading-tight min-w-0 flex-1">
-              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Formula</span>
-              <span className="text-[11px] sm:text-[14px] font-extrabold text-[#0F172A] font-sans break-words line-clamp-1 block leading-snug">
-                {slide.molecularFormula}
-              </span>
-            </div>
-          </div>
-        </div>
-
+      <div className="flex flex-col sm:grid sm:grid-cols-12 gap-2 sm:gap-4 items-stretch my-1 sm:my-2 font-sans flex-1 min-w-0">
         {/* 2D Chemical Structure Stage with Zoom Controls */}
-        <div className="order-1 sm:order-2 sm:col-span-7 relative flex flex-col rounded-2xl bg-[#FCFDFD] border border-slate-200/90 shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)] p-2.5 sm:p-3 h-[180px] sm:h-full overflow-hidden min-w-0">
+        <div className="order-1 sm:order-2 sm:col-span-7 relative flex flex-col rounded-2xl bg-[#FCFDFD] border border-slate-200/90 shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)] p-2 sm:p-3 h-[155px] sm:h-full overflow-hidden min-w-0">
           {/* Header Toolbar: Zoom Controls */}
           <div className="flex items-center justify-end mb-1 relative z-20">
             {/* Interactive Zoom Control Segment */}
-            <div className="flex items-center gap-1.5 bg-white border border-slate-200/90 rounded-lg px-2 py-0.5 shadow-2xs text-xs font-semibold text-slate-600">
+            <div className="flex items-center gap-1 bg-white border border-slate-200/90 rounded-lg px-2 py-0.5 shadow-2xs text-[11px] sm:text-xs font-semibold text-slate-600">
               <button
                 type="button"
                 onClick={handleZoomOut}
                 disabled={zoom <= 0.7}
-                className="w-5 h-5 flex items-center justify-center text-slate-500 hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-slate-500 hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
                 title="Zoom Out"
               >
-                <IoRemoveOutline size={14} />
+                <IoRemoveOutline size={13} />
               </button>
               <button
                 type="button"
                 onClick={handleZoomReset}
-                className="px-1 text-[11px] font-bold text-slate-700 hover:text-[#00897B] cursor-pointer"
+                className="px-1 text-[10px] sm:text-[11px] font-bold text-slate-700 hover:text-[#00897B] cursor-pointer"
                 title="Reset Zoom (100%)"
               >
                 {Math.round(zoom * 100)}%
@@ -516,16 +475,16 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
                 type="button"
                 onClick={handleZoomIn}
                 disabled={zoom >= 1.6}
-                className="w-5 h-5 flex items-center justify-center text-slate-500 hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-slate-500 hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
                 title="Zoom In"
               >
-                <IoAddOutline size={14} />
+                <IoAddOutline size={13} />
               </button>
             </div>
           </div>
 
           {/* Structure Canvas */}
-          <div className="w-full flex-1 flex items-center justify-center p-1 sm:p-2 overflow-hidden select-none min-h-[120px] sm:min-h-[170px]">
+          <div className="w-full flex-1 flex items-center justify-center p-1 sm:p-2 overflow-hidden select-none min-h-[110px] sm:min-h-[170px]">
             <div
               className="w-full h-full flex items-center justify-center transition-transform duration-200 origin-center"
               style={{ transform: `scale(${zoom})` }}
@@ -534,7 +493,7 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
                 <img
                   src={slide.structureImage}
                   alt={slide.name}
-                  className="w-full h-full object-contain max-h-[125px] sm:max-h-[175px] select-none pointer-events-none drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
+                  className="w-full h-full object-contain max-h-[115px] sm:max-h-[175px] select-none pointer-events-none drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
                   loading="eager"
                 />
               ) : (
@@ -543,14 +502,55 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
             </div>
           </div>
         </div>
+
+        {/* Spec Cards Column: On mobile, 2 columns for CAS & MW, full width row for Formula; on desktop, vertical 3 spec cards */}
+        <div className="order-2 sm:order-1 sm:col-span-5 grid grid-cols-2 sm:flex sm:flex-col justify-between gap-1.5 sm:gap-2.5 text-left min-w-0">
+          {/* CAS NO. */}
+          <div className="flex items-center gap-2 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
+              <IoFlaskOutline size={14} className="sm:text-[18px] stroke-[2.2]" />
+            </div>
+            <div className="leading-tight min-w-0 flex-1">
+              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">CAS NO.</span>
+              <span className="text-xs sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">{slide.casNumber}</span>
+            </div>
+          </div>
+
+          {/* MOLECULAR WEIGHT */}
+          <div className="flex items-center gap-2 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
+              <IoGitNetworkOutline size={14} className="sm:text-[18px] stroke-[2.2]" />
+            </div>
+            <div className="leading-tight min-w-0 flex-1">
+              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Mol. Weight</span>
+              <div className="text-xs sm:text-[15px] font-extrabold text-[#0F172A] font-sans truncate block">
+                {mwValue}
+                <span className="text-[9px] sm:text-xs font-medium text-slate-500 ml-0.5 sm:ml-1">g/mol</span>
+              </div>
+            </div>
+          </div>
+
+          {/* MOLECULAR FORMULA - spans both columns on mobile so formula never wraps awkwardly */}
+          <div className="col-span-2 sm:col-span-1 flex items-center gap-2 sm:gap-3 p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-[#F8FCFC] border border-[#E1F3F1] hover:border-[#00A389]/40 hover:bg-[#F0FAF8] transition-colors shadow-2xs min-w-0">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#E2F7F4] border border-[#C5EFE8] text-[#00897B] flex items-center justify-center shrink-0">
+              <IoCubeOutline size={14} className="sm:text-[18px] stroke-[2.2]" />
+            </div>
+            <div className="leading-tight min-w-0 flex-1">
+              <span className="text-[9px] sm:text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans block mb-0.5">Formula</span>
+              <span className="text-xs sm:text-[14px] font-extrabold text-[#0F172A] font-sans break-words line-clamp-1 block leading-snug">
+                {slide.molecularFormula}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* 4. Action Footer Bar */}
-      <div className="pt-3 border-t border-slate-100/90 flex items-center justify-between gap-3 relative z-10 font-sans">
+      <div className="pt-2 sm:pt-3 border-t border-slate-100/90 flex items-center justify-between gap-2 sm:gap-3 relative z-10 font-sans">
         <button
           type="button"
           onClick={onAddToCart}
-          className={`relative overflow-hidden px-7 py-3 rounded-full font-bold text-sm shadow-md flex items-center gap-2.5 cursor-pointer transition-all active:scale-95 ${
+          className={`relative overflow-hidden px-4 sm:px-7 py-2.5 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-1.5 sm:gap-2.5 cursor-pointer transition-all active:scale-95 flex-1 sm:flex-initial shrink min-w-0 ${
             added
               ? 'bg-emerald-600 text-white shadow-[0_0_18px_rgba(16,185,129,0.45)]'
               : 'bg-[#005E54] hover:bg-[#004D45] text-white shadow-[0_4px_16px_rgba(0,94,84,0.3)] hover:shadow-[0_6px_22px_rgba(0,94,84,0.45)]'
@@ -558,14 +558,15 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
         >
           {added ? (
             <>
-              <IoCheckmarkCircle size={18} />
-              <span>Added to Cart!</span>
+              <IoCheckmarkCircle size={16} className="sm:text-[18px] shrink-0" />
+              <span className="truncate">Added to Cart!</span>
             </>
           ) : (
             <>
-              <IoCartOutline size={18} />
-              <span>Add to Enquiry Cart</span>
-              <IoArrowForward size={16} />
+              <IoCartOutline size={16} className="sm:text-[18px] shrink-0" />
+              <span className="truncate sm:hidden">Add to Enquiry</span>
+              <span className="hidden sm:inline">Add to Enquiry Cart</span>
+              <IoArrowForward size={14} className="sm:text-[16px] shrink-0" />
             </>
           )}
         </button>
@@ -574,10 +575,10 @@ function ChemicalCardContent({ slide, added, onAddToCart }) {
           href={slide.link || "/products"}
           prefetch={true}
           onMouseEnter={() => prefetchProduct(slide.id)}
-          className="inline-flex items-center gap-2 text-[15px] font-bold text-[#00897B] hover:text-[#005E54] px-4 py-2 rounded-full hover:bg-teal-50/60 transition-all group/link font-sans"
+          className="inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-[15px] font-bold text-[#00897B] hover:text-[#005E54] px-3 sm:px-4 py-2 rounded-full hover:bg-teal-50/60 transition-all group/link font-sans shrink-0 whitespace-nowrap"
         >
           <span>View Details</span>
-          <IoArrowForward size={16} className="transition-transform duration-200 group-hover/link:translate-x-1" />
+          <IoArrowForward size={14} className="sm:text-[16px] transition-transform duration-200 group-hover/link:translate-x-1" />
         </Link>
       </div>
     </div>
@@ -710,7 +711,7 @@ export default function ChemicalSlideshow() {
           This outer frame NEVER moves, resets, or unmounts during transitions.
           The beam continuously rotates around the perimeter with zero interruption.
           ================================================================ */}
-      <div className="moving-glow-card w-full h-[495px] sm:h-[490px] select-none relative shadow-[0_20px_50px_-12px_rgba(15,23,42,0.08)] overflow-hidden">
+      <div className="moving-glow-card w-full h-[540px] sm:h-[490px] select-none relative shadow-[0_20px_50px_-12px_rgba(15,23,42,0.08)] overflow-hidden">
         {/* 1. Luminous Rotating Glow Beam (Exact same class as Log In / Sign Up button) */}
         <span className="moving-glow-beam" aria-hidden="true" />
 
@@ -723,7 +724,7 @@ export default function ChemicalSlideshow() {
           {prevIdx !== null && (
             <div
               key={`prev-${CHEMICAL_SLIDES[prevIdx].id}`}
-              className={`absolute inset-0 p-5 sm:p-6 flex flex-col justify-between pointer-events-none ${
+              className={`absolute inset-0 p-4 sm:p-6 flex flex-col justify-between pointer-events-none ${
                 direction === 'next' ? 'slide-content-out-next' : 'slide-content-out-prev'
               }`}
             >
@@ -738,7 +739,7 @@ export default function ChemicalSlideshow() {
           {/* Current active slide */}
           <div
             key={`curr-${activeSlide.id}`}
-            className={`w-full h-full p-5 sm:p-6 flex flex-col justify-between ${
+            className={`w-full h-full p-4 sm:p-6 flex flex-col justify-between ${
               prevIdx !== null
                 ? direction === 'next'
                   ? 'slide-content-in-next'
@@ -756,13 +757,12 @@ export default function ChemicalSlideshow() {
       </div>
 
       {/* ================================================================
-          NEXT & PREVIOUS DIRECTIONAL ARROWS
-          Floating comfortably over card edges with high z-index
+          NEXT & PREVIOUS DIRECTIONAL ARROWS (Desktop sm+ floating over edges)
           ================================================================ */}
       <button
         type="button"
         onClick={handlePrev}
-        className="absolute -left-4 sm:-left-6 top-1/2 -translate-y-1/2 z-40 w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-[#00897B] shadow-[0_4px_18px_rgba(15,23,42,0.12)] border border-slate-200/90 hover:border-[#00897B]/40 flex items-center justify-center transition-all duration-300 group active:scale-95 cursor-pointer focus:outline-none"
+        className="hidden sm:flex absolute -left-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white hover:bg-slate-50 text-[#00897B] shadow-[0_4px_18px_rgba(15,23,42,0.12)] border border-slate-200/90 hover:border-[#00897B]/40 items-center justify-center transition-all duration-300 group active:scale-95 cursor-pointer focus:outline-none"
         aria-label="Previous Chemical Product"
         title="Previous product"
       >
@@ -774,7 +774,7 @@ export default function ChemicalSlideshow() {
       <button
         type="button"
         onClick={handleNext}
-        className="absolute -right-4 sm:-right-6 top-1/2 -translate-y-1/2 z-40 w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-white hover:bg-slate-50 text-[#00897B] shadow-[0_4px_18px_rgba(15,23,42,0.12)] border border-slate-200/90 hover:border-[#00897B]/40 flex items-center justify-center transition-all duration-300 group active:scale-95 cursor-pointer focus:outline-none"
+        className="hidden sm:flex absolute -right-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white hover:bg-slate-50 text-[#00897B] shadow-[0_4px_18px_rgba(15,23,42,0.12)] border border-slate-200/90 hover:border-[#00897B]/40 items-center justify-center transition-all duration-300 group active:scale-95 cursor-pointer focus:outline-none"
         aria-label="Next Chemical Product"
         title="Next product"
       >
@@ -784,22 +784,47 @@ export default function ChemicalSlideshow() {
       </button>
 
       {/* ================================================================
-          BOTTOM NAVIGATION INDICATORS (Polished Pill Dots)
+          BOTTOM NAVIGATION (Mobile Prev/Next + Polished Pill Dots)
           ================================================================ */}
-      <div className="flex items-center justify-center gap-1.5 mt-5">
-        {CHEMICAL_SLIDES.map((c, idx) => (
-          <button
-            key={c.id}
-            type="button"
-            onClick={() => handleDotClick(idx)}
-            className={`h-2 transition-all duration-300 cursor-pointer rounded-full ${
-              currentIdx === idx
-                ? 'w-7 bg-[#00897B] shadow-[0_0_10px_rgba(0,163,137,0.5)]'
-                : 'w-2 bg-slate-300 hover:bg-slate-400'
-            }`}
-            aria-label={`Jump to ${c.name}`}
-          />
-        ))}
+      <div className="flex items-center justify-center gap-3 sm:gap-1.5 mt-4 sm:mt-5">
+        {/* Mobile Prev Button */}
+        <button
+          type="button"
+          onClick={handlePrev}
+          className="sm:hidden w-8 h-8 rounded-full bg-white border border-slate-200 text-[#00897B] shadow-xs flex items-center justify-center active:scale-90 cursor-pointer"
+          aria-label="Previous Chemical Product"
+          title="Previous product"
+        >
+          <IoChevronBackOutline size={16} className="stroke-[2.5]" />
+        </button>
+
+        {/* Dots */}
+        <div className="flex items-center gap-1.5">
+          {CHEMICAL_SLIDES.map((c, idx) => (
+            <button
+              key={c.id}
+              type="button"
+              onClick={() => handleDotClick(idx)}
+              className={`h-2 transition-all duration-300 cursor-pointer rounded-full ${
+                currentIdx === idx
+                  ? 'w-7 bg-[#00897B] shadow-[0_0_10px_rgba(0,163,137,0.5)]'
+                  : 'w-2 bg-slate-300 hover:bg-slate-400'
+              }`}
+              aria-label={`Jump to ${c.name}`}
+            />
+          ))}
+        </div>
+
+        {/* Mobile Next Button */}
+        <button
+          type="button"
+          onClick={handleNext}
+          className="sm:hidden w-8 h-8 rounded-full bg-white border border-slate-200 text-[#00897B] shadow-xs flex items-center justify-center active:scale-90 cursor-pointer"
+          aria-label="Next Chemical Product"
+          title="Next product"
+        >
+          <IoChevronForwardOutline size={16} className="stroke-[2.5]" />
+        </button>
       </div>
     </div>
   );
