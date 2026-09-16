@@ -1067,10 +1067,18 @@ select:focus-visible {
   transform: scale(0.98);
 }
 
-.moving-glow-btn.hidden,
-.hidden.moving-glow-btn,
-.hidden > .moving-glow-btn {
-  display: none !important;
+@media (max-width: 639px) {
+  .moving-glow-btn.hidden,
+  .hidden.moving-glow-btn {
+    display: none !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:inline-flex.moving-glow-btn,
+  .moving-glow-btn.sm\:inline-flex {
+    display: inline-flex !important;
+  }
 }
 
 .moving-glow-beam {

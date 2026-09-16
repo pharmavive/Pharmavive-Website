@@ -258,38 +258,37 @@ export default function Navbar() {
                 </span>
               </button>
 
-              {/* Desktop Auth Status / Log In / Sign Up Button */}
-              <div className="hidden lg:flex items-center gap-2 ml-1">
-                {session?.user ? (
-                  <>
-                    <Link
-                      href="/profile"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#0f3d3a] border border-emerald-200 text-xs font-semibold transition-colors"
-                      title={`View Researcher Profile (${session.user.email})`}
-                    >
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="max-w-[120px] truncate">{session.user.name || session.user.email}</span>
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={() => signOut({ callbackUrl: '/' })}
-                      className="text-xs text-slate-500 hover:text-red-600 font-medium px-2 py-1 transition-colors cursor-pointer"
-                      title="Sign Out"
-                    >
-                      Sign Out
-                    </button>
-                  </>
-                ) : (
-                  <MovingGlowButton
-                    href="/admin/signin"
-                    prefetch={true}
-                    variant="teal"
-                    innerClassName="!px-3 xl:!px-5 !py-2 !text-xs xl:!text-sm font-semibold whitespace-nowrap"
+              {/* Auth Status / Log In / Sign Up Pill Button with Moving Glow Line */}
+              {session?.user ? (
+                <div className="hidden sm:flex items-center gap-2 ml-1">
+                  <Link
+                    href="/profile"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#0f3d3a] border border-emerald-200 text-xs font-semibold transition-colors"
+                    title={`View Researcher Profile (${session.user.email})`}
                   >
-                    Log In / Sign Up
-                  </MovingGlowButton>
-                )}
-              </div>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="max-w-[120px] truncate">{session.user.name || session.user.email}</span>
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => signOut({ callbackUrl: '/' })}
+                    className="text-xs text-slate-500 hover:text-red-600 font-medium px-2 py-1 transition-colors cursor-pointer"
+                    title="Sign Out"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <MovingGlowButton
+                  href="/admin/signin"
+                  prefetch={true}
+                  variant="teal"
+                  className="hidden sm:inline-flex ml-0.5"
+                  innerClassName="!px-3 xl:!px-5 !py-2 !text-xs xl:!text-sm font-semibold whitespace-nowrap"
+                >
+                  Log In / Sign Up
+                </MovingGlowButton>
+              )}
 
               {/* Mobile Hamburger Menu Toggle */}
               <button
